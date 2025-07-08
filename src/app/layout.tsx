@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import "./reset.css";
+import "../styles/globals.css";
+import "../styles/reset.css";
 
 export const metadata: Metadata = {
   title: "Next Arcade",
