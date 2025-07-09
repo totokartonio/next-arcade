@@ -1,0 +1,4 @@
+.wordBoard {
+  display: flex;
+  gap: 10px;
+}
