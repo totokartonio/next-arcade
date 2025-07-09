@@ -1,0 +1,13 @@
+.virtualKeyboardFieldset {
+  max-width: 445px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.virtualKeyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}

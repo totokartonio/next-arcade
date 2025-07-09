@@ -1,0 +1,17 @@
+.pad {
+  width: 40px;
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.closed {
+  background-color: rgb(48, 48, 48);
+}
+
+.open {
+  background-color: rgb(101, 101, 101);
+}

@@ -1,0 +1,5 @@
+const KEYS = "QWERTYUIOPASDFGHJKLZXCVBNM";
+const ATTEMPTS = 7;
+const WORD = "HANGMAN";
+
+export { KEYS, ATTEMPTS, WORD };
