@@ -1,0 +1,12 @@
+.gameBoard {
+  border: 1px solid white;
+}
+
+.head {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: white;
+}
