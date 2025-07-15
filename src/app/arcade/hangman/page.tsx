@@ -6,7 +6,7 @@ import useHangman from "@/features/hangman/hooks/useHangman";
 import AttemptsCounter from "@/features/hangman/components/AttemptsCounter";
 import VirtualKeyboard from "@/features/hangman/components/VirtualKeyboard";
 import WordBoard from "@/features/hangman/components/WordBoard";
-import RestartButton from "@/features/hangman/components/RestartButton";
+import RestartButton from "@/components/RestartButton";
 
 function HangmanPage() {
   const {

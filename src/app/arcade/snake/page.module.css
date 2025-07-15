@@ -1,12 +1,10 @@
-.gameBoard {
-  border: 1px solid white;
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.head {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 5px;
-  height: 5px;
-  background-color: white;
+.gameBoard {
+  border: 1px solid white;
 }
