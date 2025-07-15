@@ -1,0 +1,14 @@
+import React from "react";
+
+function SnakeLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <header>
+        <h1>Snake Game</h1>
+      </header>
+      <main>{children}</main>
+    </>
+  );
+}
+
+export default SnakeLayout;

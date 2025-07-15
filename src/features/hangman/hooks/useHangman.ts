@@ -1,7 +1,8 @@
 import React from "react";
 
 import { WORD } from "../data";
-import type { GameStatus, LetterEntry } from "../types";
+import type { LetterEntry } from "../types";
+import type { GameStatus } from "@/types";
 
 const word = WORD;
 
