@@ -7,6 +7,7 @@ export default function Home() {
       <div className={styles.linkContainer}>
         <Link href="/arcade/hangman">Hangman</Link>
         <Link href="/arcade/snake">Snake</Link>
+        <Link href="/arcade/matching-pairs">Matching Pairs</Link>
       </div>
     </div>
   );
