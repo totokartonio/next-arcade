@@ -35,7 +35,7 @@ function useSnake(
     RIGHT: { x: tile, y: 0 },
   };
 
-  const [gameStatus, setGameStatus] = React.useState<GameStatus>("running");
+  const [gameStatus, setGameStatus] = React.useState<GameStatus>("idle");
   const [snakePosition, setSnakePosition] = React.useState<Vector[]>(
     SNAKE_INITIAL_POSITION
   );
@@ -46,7 +46,12 @@ function useSnake(
     DIRECTIONS_MAP.RIGHT
   );
 
-  const queuedDirection = useDirection(direction, gameStatus, DIRECTIONS_MAP);
+  const queuedDirection = useDirection(
+    direction,
+    gameStatus,
+    setGameStatus,
+    DIRECTIONS_MAP
+  );
 
   React.useEffect(() => {
     if (gameStatus !== "running") return;
@@ -91,13 +96,14 @@ function useSnake(
     setFoodPosition(FOOD_INITIAL_POSITION);
     setDirection(DIRECTIONS_MAP.RIGHT);
 
-    setGameStatus("running");
+    setGameStatus("idle");
   }
 
   return {
     snakePosition,
     foodPosition,
-    isRunning: gameStatus === "running",
+    isIdle: gameStatus === "idle",
+    isRunning: gameStatus === "running" || gameStatus === "idle",
     restart,
   };
 }

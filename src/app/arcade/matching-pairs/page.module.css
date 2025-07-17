@@ -1,0 +1,13 @@
+.timer {
+  font-size: 1.5rem;
+}
+
+.cardsRowContainer {
+  width: 440px;
+}
+
+.cardsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

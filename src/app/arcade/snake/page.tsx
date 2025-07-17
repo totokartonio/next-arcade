@@ -26,6 +26,7 @@ function SnakePage() {
         className={styles.gameBoard}
       ></canvas>
       <p>
+        <strong>{game.isIdle && "Press any button to start the game"}</strong>
         <strong>{!game.isRunning && "Game over"}</strong>
       </p>
       {!game.isRunning && <RestartButton onClick={game.restart} />}

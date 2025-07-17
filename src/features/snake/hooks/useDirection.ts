@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import type { Vector, DirectionName } from "../types";
 import type { GameStatus } from "@/types";
+import { startIfIdle } from "@/utils";
 
 function useDirection(
   direction: Vector,
   gameStatus: GameStatus,
+  setGameStatus: (newGameStatus: GameStatus) => void,
   directionsMap: Record<DirectionName, Vector>
 ) {
   const queuedDirection = useRef<Vector | null>(null);
@@ -35,6 +37,9 @@ function useDirection(
     }
 
     function handleKeyDown(event: KeyboardEvent) {
+      if (gameStatus === "idle") {
+        startIfIdle(gameStatus, setGameStatus);
+      }
       if (gameStatus !== "running") return;
       const wanted = chooseDirection(event.key);
       if (!wanted) return;
