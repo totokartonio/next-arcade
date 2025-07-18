@@ -1,0 +1,9 @@
+.cardsRowContainer {
+  width: 440px;
+}
+
+.cardsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

@@ -1,13 +1,6 @@
-.timer {
-  font-size: 1.5rem;
-}
-
-.cardsRowContainer {
-  width: 440px;
-}
-
-.cardsRow {
+.contentContainer {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }

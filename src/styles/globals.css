@@ -28,3 +28,7 @@ body {
     color-scheme: dark;
   }
 }
+
+h1 {
+  text-align: center;
+}
