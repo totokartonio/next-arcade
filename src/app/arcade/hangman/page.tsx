@@ -12,11 +12,13 @@ function HangmanPage() {
   const {
     attempts,
     answer,
-    gameStatus,
     usedLetters,
+    isWon,
+    isLost,
     isRunning,
     handleGuess,
     restart,
+    word,
   } = useHangman();
   return (
     <div className={styles.contentContainer}>
@@ -28,10 +30,13 @@ function HangmanPage() {
         disabled={!isRunning}
       />
       <p>
-        <em>{gameStatus === "won" && "You won!"}</em>
+        <em>{isWon && "You won!"}</em>
       </p>
       <p>
         <strong>{!isRunning && "Game over"}</strong>
+      </p>
+      <p>
+        <strong>{isLost && `The word was ${word}`}</strong>
       </p>
       {!isRunning && <RestartButton onClick={restart} />}
     </div>

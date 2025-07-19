@@ -3,4 +3,6 @@ type LetterEntry = {
   isHidden: boolean;
 };
 
-export type { LetterEntry };
+type Difficulty = "easy" | "medium" | "hard";
+
+export type { LetterEntry, Difficulty };

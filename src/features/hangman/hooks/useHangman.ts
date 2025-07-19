@@ -1,34 +1,29 @@
-import React from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
-import { WORD } from "../data";
-import type { LetterEntry } from "../types";
+import { ATTEMPTS } from "../data";
+import type { Difficulty, LetterEntry } from "../types";
 import type { GameStatus } from "@/types";
 
-const word = WORD;
+import useAttempts from "./useAttempts";
+import useWord from "./useWord";
+import useKeyboardListener from "./useKeyboardListener";
 
-function useHangman() {
-  const [attempts, setAttempts] = React.useState(7);
-  const [gameStatus, setGameStatus] = React.useState<GameStatus>("running");
-  const [answer, setAnswer] = React.useState<LetterEntry[]>(() =>
+import { toAnswerArray } from "../utils";
+
+function useHangman(difficulty: Difficulty = "easy") {
+  const getNextWord = useWord(difficulty);
+
+  const [gameStatus, setGameStatus] = useState<GameStatus>("running");
+  const [word, setWord] = useState<string>(() => getNextWord());
+  const [answer, setAnswer] = useState<LetterEntry[]>(() =>
     toAnswerArray(word)
   );
-  const [usedLetters, setUsedLetters] = React.useState<Set<string>>(
-    () => new Set()
+  const [usedLetters, setUsedLetters] = useState<Set<string>>(() => new Set());
+
+  const { attempts, consumeAttempt, resetAttempts } = useAttempts(
+    ATTEMPTS,
+    () => setGameStatus("lost")
   );
-
-  function toAnswerArray(word: string): LetterEntry[] {
-    return word.split("").map((letter) => ({ letter, isHidden: true }));
-  }
-
-  React.useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      handleGuess(event.key);
-    };
-
-    window.addEventListener("keyup", handleKeyDown);
-
-    return () => window.removeEventListener("keyup", handleKeyDown);
-  }, [gameStatus]); //Added gameStatus as dependecy so when the status is changed useEffect rerenders
 
   function checkIfGameIsWon(entries: LetterEntry[]) {
     if (entries.every((entry) => !entry.isHidden)) {
@@ -37,66 +32,72 @@ function useHangman() {
     }
   }
 
-  function checkGameHaveFinished(attempts: number) {
-    if (attempts === 0) {
-      setGameStatus("lost");
-      return;
-    }
-  }
-
   function addLetterToUsedLetters(letter: string) {
     setUsedLetters((prev) => new Set(prev).add(letter));
   }
 
-  function handleGuess(rawLetter: string) {
-    //If game ended — ignore
-    if (gameStatus !== "running") return;
+  const handleGuess = useCallback(
+    (rawLetter: string) => {
+      //If game ended — ignore
+      if (gameStatus !== "running") return;
 
-    const letter = rawLetter.toUpperCase();
+      const letter = rawLetter.toUpperCase();
 
-    //Check if letter was already used
-    if (usedLetters.has(letter)) return;
+      //Check if letter was already used or pressed key is not a letter
+      if (usedLetters.has(letter) || !/^[A-Z]$/.test(letter)) return;
 
-    //Add letter to used letters array
-    addLetterToUsedLetters(letter);
+      //Add letter to used letters array
+      addLetterToUsedLetters(letter);
 
-    // Wrong guess
-    if (!word.includes(letter)) {
-      setAttempts((prevAttempts) => {
-        const next = prevAttempts - 1;
-        checkGameHaveFinished(next);
+      // Wrong guess
+      if (!word.includes(letter)) {
+        consumeAttempt();
+        return;
+      }
+
+      //Right guess
+      setAnswer((prevAnswer) => {
+        const next = prevAnswer.map((entry) =>
+          entry.letter === letter ? { ...entry, isHidden: false } : entry
+        );
+        checkIfGameIsWon(next);
         return next;
       });
-      return;
-    }
+    },
+    [
+      gameStatus,
+      usedLetters,
+      addLetterToUsedLetters,
+      consumeAttempt,
+      word,
+      answer,
+    ]
+  );
 
-    //Right guess
-    setAnswer((prevAnswer) => {
-      const next = prevAnswer.map((entry) =>
-        entry.letter === letter ? { ...entry, isHidden: false } : entry
-      );
-      checkIfGameIsWon(next);
-      return next;
-    });
+  useKeyboardListener(handleGuess, gameStatus === "running");
 
-    return;
-  }
-
+  // Function to restart the game
   function restart() {
-    setAttempts(7);
+    const nextWord = getNextWord();
+    const nextAnswer = toAnswerArray(nextWord);
+
+    resetAttempts();
     setGameStatus("running");
-    setAnswer(() => toAnswerArray(word));
+    setWord(nextWord);
+    setAnswer(nextAnswer);
     setUsedLetters(new Set());
   }
 
   return {
     attempts,
     answer,
-    gameStatus,
     usedLetters,
     isRunning: gameStatus === "running",
+    isWon: gameStatus === "won",
+    isLost: gameStatus === "lost",
     handleGuess,
     restart,
+    word,
   };
 }
 

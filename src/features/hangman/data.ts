@@ -1,5 +1,96 @@
+// Word database for Hangman, grouped by difficulty.
+//
+// Easy: 3–4‑letter words
+// Medium: 6–7‑letter words
+// Hard: 9+‑letter words
+
+const WORDS = {
+  easy: [
+    "ant",
+    "bee",
+    "cat",
+    "dog",
+    "ear",
+    "fan",
+    "gym",
+    "hat",
+    "ice",
+    "jam",
+    "kite",
+    "lion",
+    "moon",
+    "nest",
+    "oak",
+    "pig",
+    "rain",
+    "sun",
+    "tree",
+    "urge",
+    "vine",
+    "wolf",
+    "xray",
+    "yarn",
+    "zinc",
+  ],
+
+  medium: [
+    "cactus",
+    "puzzle",
+    "guitar",
+    "planet",
+    "ribbon",
+    "sphinx",
+    "castle",
+    "desert",
+    "jungle",
+    "kingdom",
+    "lantern",
+    "magnet",
+    "nearly",
+    "orange",
+    "pickle",
+    "quartz",
+    "rocket",
+    "stream",
+    "tornado",
+    "walrus",
+    "zephyr",
+    "anchor",
+    "bishop",
+    "circle",
+    "dragon",
+  ],
+
+  hard: [
+    "avalanche",
+    "blueberry",
+    "chocolate",
+    "hemisphere",
+    "impossible",
+    "juxtapose",
+    "kaleidoscope",
+    "labyrinth",
+    "mnemonics",
+    "nightingale",
+    "onomatopoeia",
+    "pneumonia",
+    "quarantine",
+    "rhapsodize",
+    "saxophone",
+    "trapezoid",
+    "underground",
+    "vocabulary",
+    "whimsical",
+    "xylophone",
+    "yellowtail",
+    "archeology",
+    "butterflies",
+    "counterfeit",
+    "earthquake",
+  ],
+};
+
 const KEYS = "QWERTYUIOPASDFGHJKLZXCVBNM";
 const ATTEMPTS = 7;
-const WORD = "HANGMAN";
 
-export { KEYS, ATTEMPTS, WORD };
+export { KEYS, ATTEMPTS, WORDS };
