@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import styles from "./MatchingPairsGame.module.css";
 
 import Card from "@/features/matchingPairs/components/Card";
 import CardsRow from "@/features/matchingPairs/components/CardsRow/CardsRow";
@@ -11,7 +11,7 @@ import useMatchingPairs from "@/features/matchingPairs/hooks/useMatchingPairs";
 const VALUES = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
 const TOTAL_TIME = 60;
 
-function MatchingPairsPage() {
+function MatchingPairsGame() {
   const {
     deck,
     timeLeft,
@@ -57,4 +57,4 @@ function MatchingPairsPage() {
   );
 }
 
-export default MatchingPairsPage;
+export default MatchingPairsGame;

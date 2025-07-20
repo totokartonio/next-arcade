@@ -1,3 +1,3 @@
-type GameStatus = 'idle' | "running" | "won" | "lost";
+type GameStatus = "idle" | "running" | "won" | "lost";
 
 export type { GameStatus };

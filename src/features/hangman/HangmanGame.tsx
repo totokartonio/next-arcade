@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import styles from "./HangmanGame.module.css";
 
 import useHangman from "@/features/hangman/hooks/useHangman";
 import AttemptsCounter from "@/features/hangman/components/AttemptsCounter";
@@ -8,7 +8,7 @@ import VirtualKeyboard from "@/features/hangman/components/VirtualKeyboard";
 import WordBoard from "@/features/hangman/components/WordBoard";
 import RestartButton from "@/components/RestartButton";
 
-function HangmanPage() {
+function HangmanGame() {
   const {
     attempts,
     answer,
@@ -43,4 +43,4 @@ function HangmanPage() {
   );
 }
 
-export default HangmanPage;
+export default HangmanGame;
