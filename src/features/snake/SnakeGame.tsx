@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./page.module.css";
+import styles from "./SnakeGame.module.css";
 
 import useSnake from "@/features/snake/hooks/useSnake";
 import useCanvas from "@/features/snake/hooks/useCanvas";
@@ -13,7 +13,7 @@ const BOARD_W = 300;
 const BOARD_H = 300;
 const SPEED = 120;
 
-function SnakePage() {
+function SnakeGame() {
   const game = useSnake(BOARD_W, BOARD_H, TILE, SPEED);
   const canvasRef = useCanvas(game, BOARD_W, BOARD_H, TILE);
 
@@ -34,4 +34,4 @@ function SnakePage() {
   );
 }
 
-export default SnakePage;
+export default SnakeGame;
