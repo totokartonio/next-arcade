@@ -3,27 +3,29 @@
 import React from "react";
 import styles from "./SnakeGame.module.css";
 
+import useCheckSearchParams from "@/hooks/useCheckSearchParams";
+
+import { CANVAS_DIMENSIONS, SNAKE_DIFFICULTY } from "./constants";
 import useSnake from "@/features/snake/hooks/useSnake";
 import useCanvas from "@/features/snake/hooks/useCanvas";
 
 import RestartButton from "@/components/RestartButton";
 
-const TILE = 15;
-const BOARD_W = 300;
-const BOARD_H = 300;
-const SPEED = 120;
-
 function SnakeGame() {
-  const game = useSnake(BOARD_W, BOARD_H, TILE, SPEED);
-  const canvasRef = useCanvas(game, BOARD_W, BOARD_H, TILE);
+  const selectedDifficulty = useCheckSearchParams();
+
+  const { speed, strictBorder } = SNAKE_DIFFICULTY[selectedDifficulty];
+  const { tile, boardW, boardH } = CANVAS_DIMENSIONS;
+  const game = useSnake(boardW, boardH, tile, speed, strictBorder);
+  const canvasRef = useCanvas(game, boardW, boardH, tile);
 
   return (
     <div className={styles.contentContainer}>
       <canvas
         ref={canvasRef}
-        width={BOARD_W}
-        height={BOARD_H}
-        className={styles.gameBoard}
+        width={boardW}
+        height={boardH}
+        className={`${styles.gameBoard} ${strictBorder && styles.strictBorder}`}
       ></canvas>
       <p>
         <strong>{game.isIdle && "Press any button to start the game"}</strong>

@@ -2,16 +2,20 @@
 
 import styles from "./MatchingPairsGame.module.css";
 
+import useCheckSearchParams from "@/hooks/useCheckSearchParams";
+
+import { MP_DIFFICULTY, CARD_POOL } from "./constants";
+
 import Card from "@/features/matchingPairs/components/Card";
 import CardsRow from "@/features/matchingPairs/components/CardsRow/CardsRow";
 import Timer from "@/features/matchingPairs/components/Timer";
 import RestartButton from "@/components/RestartButton";
 import useMatchingPairs from "@/features/matchingPairs/hooks/useMatchingPairs";
 
-const VALUES = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
-const TOTAL_TIME = 60;
-
 function MatchingPairsGame() {
+  const selectedDifficulty = useCheckSearchParams();
+  const { pairs, totalTime } = MP_DIFFICULTY[selectedDifficulty];
+
   const {
     deck,
     timeLeft,
@@ -23,7 +27,7 @@ function MatchingPairsGame() {
     isLost,
     isIdle,
     isRunning,
-  } = useMatchingPairs(VALUES, TOTAL_TIME);
+  } = useMatchingPairs(pairs, totalTime);
 
   return (
     <div className={styles.contentContainer}>

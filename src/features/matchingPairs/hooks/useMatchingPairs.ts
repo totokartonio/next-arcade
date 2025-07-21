@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 
 import type { GameStatus } from "@/types";
 import type { MemoryCard } from "../types";
+import { CARD_POOL } from "../constants";
 
 import useDeck from "./useDeck";
 import useTimer from "./useTimer";
 import { startIfIdle } from "@/utils";
 import { mapIds } from "../utils";
 
-function useMatchingPairs(values: number[], totalTime: number) {
+function useMatchingPairs(pairCount: number, totalTime: number) {
   const [gameStatus, setGameStatus] = useState<GameStatus>("idle");
 
   //cards state
@@ -16,7 +17,7 @@ function useMatchingPairs(values: number[], totalTime: number) {
   const [guessedCards, setGuessedCards] = useState<MemoryCard[]>([]);
   const [isBusy, setIsBusy] = useState(false);
 
-  const { deck, resetDeck } = useDeck(values);
+  const { deck, resetDeck } = useDeck(pairCount, CARD_POOL);
   const { timeLeft, resetTimer } = useTimer({
     gameStatus,
     setGameStatus,

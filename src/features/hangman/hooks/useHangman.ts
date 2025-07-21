@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 
 import { ATTEMPTS } from "../data";
-import type { Difficulty, LetterEntry } from "../types";
-import type { GameStatus } from "@/types";
+import type { LetterEntry } from "../types";
+import type { GameStatus, Difficulty } from "@/types";
 
 import useAttempts from "./useAttempts";
 import useWord from "./useWord";

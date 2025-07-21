@@ -1,6 +1,12 @@
 "use client";
 
 import styles from "./HangmanGame.module.css";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+import { isDifficulty } from "@/utils";
+import { Difficulty } from "@/types";
+import useCheckSearchParams from "@/hooks/useCheckSearchParams";
 
 import useHangman from "@/features/hangman/hooks/useHangman";
 import AttemptsCounter from "@/features/hangman/components/AttemptsCounter";
@@ -9,6 +15,8 @@ import WordBoard from "@/features/hangman/components/WordBoard";
 import RestartButton from "@/components/RestartButton";
 
 function HangmanGame() {
+  const selectedDifficulty = useCheckSearchParams();
+
   const {
     attempts,
     answer,
@@ -19,7 +27,7 @@ function HangmanGame() {
     handleGuess,
     restart,
     word,
-  } = useHangman();
+  } = useHangman(selectedDifficulty);
   return (
     <div className={styles.contentContainer}>
       <AttemptsCounter attempts={attempts} />

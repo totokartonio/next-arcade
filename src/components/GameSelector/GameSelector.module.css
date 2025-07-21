@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  gap: 50px;
+  justify-self: center;
+}
+
+.gameOption {
+  width: 100%;
+  min-width: 150px;
+  text-align: center;
+}

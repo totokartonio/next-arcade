@@ -2,31 +2,17 @@ import React from "react";
 
 import type { GameStatus } from "@/types";
 import type { Vector, DirectionName } from "../types";
+import { SNAKE_INITIAL_POSITION, FOOD_INITIAL_POSITION } from "../constants";
 
 import { tileEquals, rollFood } from "../utils";
 import useDirection from "./useDirection";
-
-const SNAKE_INITIAL_POSITION: Vector[] = [
-  {
-    x: 45,
-    y: 45,
-  },
-  {
-    x: 30,
-    y: 45,
-  },
-  {
-    x: 15,
-    y: 45,
-  },
-];
-const FOOD_INITIAL_POSITION: Vector = { x: 195, y: 45 };
 
 function useSnake(
   boardWidth: number,
   boardHeight: number,
   tile: number,
-  speed: number
+  speed: number,
+  strictBorder: boolean
 ) {
   const DIRECTIONS_MAP: Record<DirectionName, Vector> = {
     UP: { x: 0, y: -tile },
@@ -63,10 +49,28 @@ function useSnake(
 
       setSnakePosition((prev) => {
         const head = prev[0];
-        const newHead = {
-          x: (head.x + direction.x + boardWidth) % boardWidth,
-          y: (head.y + direction.y + boardHeight) % boardHeight,
+        let newHead = {
+          x: head.x + direction.x,
+          y: head.y + direction.y,
         };
+
+        if (
+          strictBorder &&
+          (newHead.x < 0 ||
+            newHead.x >= boardWidth ||
+            newHead.y < 0 ||
+            newHead.y >= boardHeight)
+        ) {
+          setGameStatus("lost");
+          return prev;
+        }
+
+        if (!strictBorder) {
+          newHead = {
+            x: (newHead.x + boardWidth) % boardWidth,
+            y: (newHead.y + boardHeight) % boardHeight,
+          };
+        }
 
         const ate = tileEquals(newHead, foodPosition);
 
@@ -89,7 +93,7 @@ function useSnake(
     }, speed);
 
     return () => clearInterval(interval);
-  }, [direction, foodPosition, gameStatus]);
+  }, [direction, foodPosition, gameStatus, strictBorder]);
 
   function restart() {
     setSnakePosition(SNAKE_INITIAL_POSITION);

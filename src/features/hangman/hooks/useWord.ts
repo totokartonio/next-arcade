@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 
 import { WORDS } from "../data";
 import { getRandomInt } from "../utils";
-import { Difficulty } from "../types";
+import { Difficulty } from "@/types";
 
 function useWord(difficulty: Difficulty) {
   const [usedWords, setUsedWords] = useState<string[]>([]);

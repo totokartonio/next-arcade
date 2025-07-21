@@ -1,9 +1,10 @@
 .cardsRowContainer {
-  width: 440px;
+  width: 400px;
 }
 
 .cardsRow {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
