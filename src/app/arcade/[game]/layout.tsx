@@ -29,7 +29,7 @@ async function GameLayout({
     <>
       <header>
         <LinkToHub />
-        <h1>{`${gameName} Game`}</h1>
+        <h2>{`${gameName} Game`}</h2>
       </header>
       <main>{children}</main>
     </>

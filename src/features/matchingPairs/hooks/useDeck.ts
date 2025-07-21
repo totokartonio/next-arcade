@@ -1,17 +1,19 @@
 import { useState, useEffect, useCallback, use } from "react";
 
-import { shuffleDeck, arrayToDeck } from "../utils";
+import { shuffleDeck, buildDeck } from "../utils";
 import type { MemoryCard } from "../types";
 
-function useDeck(values: any[]) {
-  const [deck, setDeck] = useState<MemoryCard[]>(() => arrayToDeck(values));
+function useDeck(pairCount: number, pool: readonly string[]) {
+  const [deck, setDeck] = useState<MemoryCard[]>(() =>
+    buildDeck(pairCount, pool)
+  );
 
   useEffect(() => {
     setDeck((prev) => shuffleDeck(prev));
   }, []);
 
   const resetDeck = useCallback(() => {
-    setDeck(shuffleDeck(deck));
+    setDeck(buildDeck(pairCount, pool));
   }, [deck]);
 
   return { deck, resetDeck };

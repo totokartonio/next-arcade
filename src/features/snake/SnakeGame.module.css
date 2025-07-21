@@ -8,3 +8,7 @@
 .gameBoard {
   border: 1px solid white;
 }
+
+.strictBorder {
+  border: 3px solid white;
+}

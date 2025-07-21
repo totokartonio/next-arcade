@@ -1,4 +1,5 @@
-import type { GameStatus } from "./types";
+import type { GameStatus, Difficulty } from "./types";
+import { DIFFICULTIES } from "./constants";
 
 function startIfIdle(
   gameStatus: GameStatus,
@@ -16,4 +17,10 @@ function upperCaseFirstLetter(string: string) {
   return string;
 }
 
-export { startIfIdle, transformLabel, upperCaseFirstLetter };
+function isDifficulty(value: unknown): value is Difficulty {
+  return (
+    typeof value === "string" && DIFFICULTIES.includes(value as Difficulty)
+  );
+}
+
+export { startIfIdle, transformLabel, upperCaseFirstLetter, isDifficulty };

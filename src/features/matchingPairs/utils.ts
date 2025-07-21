@@ -17,9 +17,18 @@ function arrayToDeck(array: any[]) {
   return objectList;
 }
 
+function buildDeck(pairCount: number, pool: readonly string[]) {
+  if (pairCount > pool.length) {
+    throw new Error("Not enough icons in CARD_POOL");
+  }
+  const chosen = shuffleDeck([...pool]).slice(0, pairCount);
+  const doubled = shuffleDeck([...chosen, ...chosen]); // duplicate & shuffle
+  return doubled.map((value) => ({ id: crypto.randomUUID(), value }));
+}
+
 function mapIds(cardsArray: MemoryCard[]) {
   const idsArray = cardsArray.map((card) => card.id);
   return idsArray;
 }
 
-export { shuffleDeck, arrayToDeck, mapIds };
+export { shuffleDeck, arrayToDeck, buildDeck, mapIds };
