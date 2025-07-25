@@ -1,0 +1,11 @@
+.title {
+  font-family: var(--font-press-start), sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+
+.content {
+  margin-top: 25px;
+}

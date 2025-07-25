@@ -1,0 +1,123 @@
+.container {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.back {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+}
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+}
+.front {
+  display: block;
+  position: relative;
+  padding-block: 1px;
+  padding-inline: 6px;
+  border-radius: 2px;
+  font-size: 1.25rem;
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.back:hover,
+.hover {
+  filter: brightness(110%);
+}
+
+.back:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+.back:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.back:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+.back:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.back:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Variants */
+
+/* Primary */
+.primary .front {
+  background: var(--primary);
+  color: white;
+}
+
+.primary .edge {
+  background: var(--primary-linear-gradient);
+}
+
+/* Secondary */
+.secondary .front {
+  background: var(--neutral-200);
+  color: black;
+}
+
+.secondary .edge {
+  background: var(--secondary-linear-gradient);
+}
+
+/* keyButton */
+.keyButton .front {
+  background: var(--neutral-dusty-gray);
+  color: white;
+  font-size: 1.5rem;
+  width: 40px;
+}
+
+.keyButton .edge {
+  background: var(--neutral-dusty-gray-gradient);
+}
+
+/* Disabled */
+button.back:disabled {
+  cursor: not-allowed;
+  filter: brightness(70%) grayscale(20%);
+}
+
+button.back:disabled .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+button.back:disabled .shadow {
+  transform: translateY(1px);
+  opacity: 0;
+  transition: transform 34ms, opacity 34ms;
+}

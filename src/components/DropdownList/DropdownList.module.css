@@ -6,19 +6,54 @@
   cursor: pointer;
 }
 
+.dropdownContainer:hover {
+  box-shadow: 0 0 5px 2px var(--secondary);
+}
+
 .dropdown {
   position: absolute;
   left: 0;
   top: calc(100% + 1rem);
-
   padding: 5px;
   border: 1px solid white;
   border-radius: 10px;
   width: 100%;
   min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Animation */
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.text {
+  font-size: 1.2rem;
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   list-style: none;
   padding-inline: 0;
+}
+
+.open {
+  transform: scale(1.2);
+  transition: transform 250ms cubic-bezier(0.18, 0.81, 0.45, 1.58);
+  z-index: 1;
+  box-shadow: 0 0 5px 2px var(--secondary);
 }

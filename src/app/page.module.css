@@ -1,0 +1,24 @@
+.header {
+  position: sticky;
+  height: 100px;
+}
+
+.title {
+  font-family: var(--font-monoton), sans-serif;
+  font-weight: 400;
+  font-size: 4rem;
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+
+.main {
+  height: calc(100vh - 100px);
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
