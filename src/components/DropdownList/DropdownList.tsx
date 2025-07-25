@@ -1,6 +1,6 @@
-import { ReactNode, useRef, useEffect } from "react";
+import { ReactNode, useRef, useEffect, useState } from "react";
 import styles from "./DropdownList.module.css";
-import LinkButton from "../LinkButton";
+import MagicButton from "../ui/MagicButton";
 import { transformLabel } from "@/utils";
 
 type Props = {
@@ -42,7 +42,9 @@ function DropdownList({
   return (
     <div
       ref={containerRef}
-      className={`${styles.dropdownContainer} ${className}`}
+      className={`${styles.dropdownContainer} ${className} ${
+        isOpen && styles.open
+      }`}
       id={id}
       onClick={onClick}
       tabIndex={0}
@@ -50,13 +52,17 @@ function DropdownList({
       {children}
       {isOpen && (
         <div className={styles.dropdown}>
-          <span>Select difficulty:</span>
+          <span className={styles.text}>Select difficulty:</span>
           <ul className={styles.list}>
             {difficultyOptions.map((option, index) => (
               <li key={index}>
-                <LinkButton href={`/arcade/${gameTitle}?difficulty=${option}`}>
+                <MagicButton
+                  as="link"
+                  variant="primary"
+                  href={`/arcade/${gameTitle}?difficulty=${option}`}
+                >
                   {transformLabel(option)}
-                </LinkButton>
+                </MagicButton>
               </li>
             ))}
           </ul>

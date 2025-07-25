@@ -10,15 +10,25 @@ type Props = {
 };
 
 function Card({ value, id, isFlipped, isMatched, onClick }: Props) {
+  const flippingBack = !isFlipped && !isMatched;
+
   return (
-    <div
-      id={id}
-      className={`${styles.card} ${
-        isFlipped || isMatched ? styles.cardFace : styles.cardBack
-      }`}
-      onClick={onClick}
-    >
-      {(isFlipped || isMatched) && value}
+    <div className={styles.cardWrapper}>
+      <div
+        id={id}
+        className={`${styles.card} ${
+          isFlipped || isMatched ? styles.flipped : ""
+        } ${flippingBack ? styles.flippingBack : ""}`}
+        onClick={onClick}
+      >
+        {(isFlipped || isMatched) && (
+          <img
+            src={`/icons/${value}.png`}
+            alt={`${value} icon`}
+            className={styles.cardImage}
+          />
+        )}
+      </div>
     </div>
   );
 }

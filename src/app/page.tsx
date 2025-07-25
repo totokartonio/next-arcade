@@ -3,7 +3,7 @@ import GameSelector from "@/components/GameSelector";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div className={styles.content}>
       <GameSelector />
     </div>
   );

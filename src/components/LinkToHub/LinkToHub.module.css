@@ -1,3 +1,7 @@
 .navigation {
   padding: 20px;
 }
+
+.button {
+  max-width: 100px;
+}

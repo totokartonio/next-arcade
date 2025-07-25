@@ -6,9 +6,11 @@
 }
 
 .gameBoard {
-  border: 1px solid white;
+  border-radius: 2px;
+  border: 1px solid (--foreground);
+  box-shadow: 0 0 15px 3px var(--glow-purple);
 }
 
 .strictBorder {
-  border: 3px solid white;
+  border: 3px solid var(--foreground);
 }

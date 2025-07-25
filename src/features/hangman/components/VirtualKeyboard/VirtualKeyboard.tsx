@@ -1,6 +1,6 @@
 import styles from "./VirtualKeyboard.module.css";
 
-import KeyButton from "../KeyButton";
+import MagicButton from "@/components/ui/MagicButton";
 
 import { KEYS } from "../../data";
 
@@ -15,12 +15,15 @@ function VirtualKeyboard({ onClick, usedLetters, disabled }: Props) {
     <fieldset className={styles.virtualKeyboardFieldset} disabled={disabled}>
       <div className={styles.virtualKeyboard}>
         {KEYS.split("").map((letter) => (
-          <KeyButton
+          <MagicButton
             key={letter}
-            letter={letter}
-            onClick={onClick}
-            wasSelected={usedLetters.has(letter)}
-          />
+            as="button"
+            variant="keyButton"
+            onClick={() => onClick(letter)}
+            disabled={usedLetters.has(letter)}
+          >
+            {letter}
+          </MagicButton>
         ))}
       </div>
     </fieldset>

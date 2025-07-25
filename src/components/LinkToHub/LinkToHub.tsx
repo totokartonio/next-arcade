@@ -1,10 +1,17 @@
-import Link from "next/link";
+import MagicButton from "../ui/MagicButton";
 import styles from "./LinkToHub.module.css";
 
 function LinkToHub() {
   return (
     <nav className={styles.navigation}>
-      <Link href="/">Back to Hub</Link>
+      <MagicButton
+        as="link"
+        variant="secondary"
+        href="/"
+        className={styles.button}
+      >
+        Back to Hub
+      </MagicButton>
     </nav>
   );
 }

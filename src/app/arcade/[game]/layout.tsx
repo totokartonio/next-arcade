@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import styles from "./page.module.css";
 import LinkToHub from "@/components/LinkToHub";
 import { transformLabel } from "@/utils";
 
@@ -27,11 +28,11 @@ async function GameLayout({
 
   return (
     <>
-      <header>
+      <div>
         <LinkToHub />
-        <h2>{`${gameName} Game`}</h2>
-      </header>
-      <main>{children}</main>
+        <h2 className={styles.title}>{`${gameName} Game`}</h2>
+      </div>
+      <div className={styles.content}>{children}</div>
     </>
   );
 }

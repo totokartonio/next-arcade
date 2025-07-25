@@ -1,0 +1,8 @@
+.restartButton {
+  width: 300px;
+  font-size: 2rem;
+}
+
+.restartButton span {
+  font-size: 1.5rem;
+}

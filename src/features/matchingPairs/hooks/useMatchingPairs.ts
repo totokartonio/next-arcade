@@ -49,6 +49,7 @@ function useMatchingPairs(pairCount: number, totalTime: number) {
 
   function handleFlip({ id, value }: MemoryCard) {
     startIfIdle(gameStatus, setGameStatus);
+    if (gameStatus !== "running" && gameStatus !== "idle") return;
     if (isBusy) return;
     if (
       openCards.some((card) => card.id === id) ||

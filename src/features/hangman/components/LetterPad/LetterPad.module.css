@@ -9,9 +9,9 @@
 }
 
 .closed {
-  background-color: rgb(48, 48, 48);
+  background-color: var(--neutral-700);
 }
 
 .open {
-  background-color: rgb(101, 101, 101);
+  background-color: var(--neutral-500);
 }

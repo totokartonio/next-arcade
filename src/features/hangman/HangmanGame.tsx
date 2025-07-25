@@ -1,11 +1,6 @@
 "use client";
 
 import styles from "./HangmanGame.module.css";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
-
-import { isDifficulty } from "@/utils";
-import { Difficulty } from "@/types";
 import useCheckSearchParams from "@/hooks/useCheckSearchParams";
 
 import useHangman from "@/features/hangman/hooks/useHangman";
