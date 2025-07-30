@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 import { WORDS } from "../data";
 import { getRandomInt } from "../utils";
@@ -13,7 +13,7 @@ function useWord(difficulty: Difficulty) {
     return wordsArray[i];
   }
 
-  const getNextWord = useCallback(() => {
+  function getNextWord() {
     const bank = WORDS[difficulty];
 
     let nextWord: string = randomlySelectWord(WORDS[difficulty]);
@@ -33,7 +33,7 @@ function useWord(difficulty: Difficulty) {
     console.log(nextWord);
 
     return nextWord;
-  }, [difficulty]);
+  }
 
   return getNextWord;
 }

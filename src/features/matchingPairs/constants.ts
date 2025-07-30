@@ -2,12 +2,9 @@ import type { Difficulty } from "@/types";
 
 const CARD_POOL = [
   "worm",
-  "ant",
   "bee",
-  "black_beetle",
   "brown_beetle",
   "butterfly",
-  "cockroach",
   "dove",
   "dragonfly",
   "fish",

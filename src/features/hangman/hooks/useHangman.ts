@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState } from "react";
 
 import { ATTEMPTS } from "../data";
 import type { LetterEntry } from "../types";
@@ -36,43 +36,33 @@ function useHangman(difficulty: Difficulty = "easy") {
     setUsedLetters((prev) => new Set(prev).add(letter));
   }
 
-  const handleGuess = useCallback(
-    (rawLetter: string) => {
-      //If game ended — ignore
-      if (gameStatus !== "running") return;
+  function handleGuess(rawLetter: string) {
+    //If game ended — ignore
+    if (gameStatus !== "running") return;
 
-      const letter = rawLetter.toUpperCase();
+    const letter = rawLetter.toUpperCase();
 
-      //Check if letter was already used or pressed key is not a letter
-      if (usedLetters.has(letter) || !/^[A-Z]$/.test(letter)) return;
+    //Check if letter was already used or pressed key is not a letter
+    if (usedLetters.has(letter) || !/^[A-Z]$/.test(letter)) return;
 
-      //Add letter to used letters array
-      addLetterToUsedLetters(letter);
+    //Add letter to used letters array
+    addLetterToUsedLetters(letter);
 
-      // Wrong guess
-      if (!word.includes(letter)) {
-        consumeAttempt();
-        return;
-      }
+    // Wrong guess
+    if (!word.includes(letter)) {
+      consumeAttempt();
+      return;
+    }
 
-      //Right guess
-      setAnswer((prevAnswer) => {
-        const next = prevAnswer.map((entry) =>
-          entry.letter === letter ? { ...entry, isHidden: false } : entry
-        );
-        checkIfGameIsWon(next);
-        return next;
-      });
-    },
-    [
-      gameStatus,
-      usedLetters,
-      addLetterToUsedLetters,
-      consumeAttempt,
-      word,
-      answer,
-    ]
-  );
+    //Right guess
+    setAnswer((prevAnswer) => {
+      const next = prevAnswer.map((entry) =>
+        entry.letter === letter ? { ...entry, isHidden: false } : entry
+      );
+      checkIfGameIsWon(next);
+      return next;
+    });
+  }
 
   useKeyboardListener(handleGuess, gameStatus === "running");
 

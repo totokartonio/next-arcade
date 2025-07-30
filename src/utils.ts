@@ -1,5 +1,5 @@
 import type { GameStatus, Difficulty } from "./types";
-import { DIFFICULTIES } from "./constants";
+import { DIFFICULTIES, GAMES_CATALOGUE } from "./constants";
 
 function startIfIdle(
   gameStatus: GameStatus,
@@ -23,4 +23,15 @@ function isDifficulty(value: unknown): value is Difficulty {
   );
 }
 
-export { startIfIdle, transformLabel, upperCaseFirstLetter, isDifficulty };
+function getTitleFromSlug(slug: string): string {
+  const entry = Object.values(GAMES_CATALOGUE).find((e) => e.slug === slug);
+  return entry?.title ?? slug;
+}
+
+export {
+  startIfIdle,
+  transformLabel,
+  upperCaseFirstLetter,
+  isDifficulty,
+  getTitleFromSlug,
+};
