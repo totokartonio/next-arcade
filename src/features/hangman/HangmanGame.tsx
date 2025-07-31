@@ -7,7 +7,7 @@ import useHangman from "@/features/hangman/hooks/useHangman";
 import AttemptsCounter from "@/features/hangman/components/AttemptsCounter";
 import VirtualKeyboard from "@/features/hangman/components/VirtualKeyboard";
 import WordBoard from "@/features/hangman/components/WordBoard";
-import RestartButton from "@/components/RestartButton";
+import GameOver from "@/components/GameOver";
 
 function HangmanGame() {
   const selectedDifficulty = useCheckSearchParams();
@@ -17,7 +17,6 @@ function HangmanGame() {
     answer,
     usedLetters,
     isWon,
-    isLost,
     isRunning,
     handleGuess,
     restart,
@@ -32,16 +31,13 @@ function HangmanGame() {
         usedLetters={usedLetters}
         disabled={!isRunning}
       />
-      <p>
-        <em>{isWon && "You won!"}</em>
-      </p>
-      <p>
-        <strong>{!isRunning && "Game over"}</strong>
-      </p>
-      <p>
-        <strong>{isLost && `The word was ${word}`}</strong>
-      </p>
-      {!isRunning && <RestartButton onClick={restart} />}
+      {!isRunning && (
+        <GameOver
+          isWon={isWon}
+          message={!isWon ? `The word was ${word}` : null}
+          onClick={restart}
+        />
+      )}
     </div>
   );
 }

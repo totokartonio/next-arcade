@@ -84,7 +84,6 @@ function useHangman(difficulty: Difficulty = "easy") {
     usedLetters,
     isRunning: gameStatus === "running",
     isWon: gameStatus === "won",
-    isLost: gameStatus === "lost",
     handleGuess,
     restart,
     word,
