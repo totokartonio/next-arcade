@@ -9,7 +9,7 @@ import { CANVAS_DIMENSIONS, SNAKE_DIFFICULTY } from "./constants";
 import useSnake from "@/features/snake/hooks/useSnake";
 import useCanvas from "@/features/snake/hooks/useCanvas";
 
-import RestartButton from "@/components/RestartButton";
+import GameOver from "@/components/GameOver";
 
 function SnakeGame() {
   const selectedDifficulty = useCheckSearchParams();
@@ -27,11 +27,12 @@ function SnakeGame() {
         height={boardH}
         className={`${styles.gameBoard} ${strictBorder && styles.strictBorder}`}
       ></canvas>
-      <p>
-        <strong>{game.isIdle && "Press any button to start the game"}</strong>
-        <strong>{!game.isRunning && "Game over"}</strong>
-      </p>
-      {!game.isRunning && <RestartButton onClick={game.restart} />}
+      {game.isIdle && (
+        <p>
+          <strong>Press any button to start the game</strong>
+        </p>
+      )}
+      {game.isLost && <GameOver isWon={!game.isLost} onClick={game.restart} />}
     </div>
   );
 }

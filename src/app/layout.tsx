@@ -8,6 +8,9 @@ import "../styles/reset.css";
 export const metadata: Metadata = {
   title: "Next Arcade",
   description: "Collection of small arcade games created with Next.js",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 const monoton = Monoton({

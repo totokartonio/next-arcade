@@ -4,13 +4,14 @@ import styles from "./MatchingPairsGame.module.css";
 
 import useCheckSearchParams from "@/hooks/useCheckSearchParams";
 
-import { MP_DIFFICULTY, CARD_POOL } from "./constants";
+import { MP_DIFFICULTY } from "./constants";
 
 import Card from "@/features/matchingPairs/components/Card";
 import CardsRow from "@/features/matchingPairs/components/CardsRow/CardsRow";
 import Timer from "@/features/matchingPairs/components/Timer";
-import RestartButton from "@/components/RestartButton";
 import useMatchingPairs from "@/features/matchingPairs/hooks/useMatchingPairs";
+
+import GameOver from "@/components/GameOver";
 
 function MatchingPairsGame() {
   const selectedDifficulty = useCheckSearchParams();
@@ -24,7 +25,6 @@ function MatchingPairsGame() {
     handleFlip,
     restart,
     isWon,
-    isLost,
     isIdle,
     isRunning,
   } = useMatchingPairs(pairs, totalTime);
@@ -46,17 +46,22 @@ function MatchingPairsGame() {
           );
         })}
       </CardsRow>
-      <p>
-        <em>
-          {isWon && `You won with ${timeLeft} seconds left!`}
-          {isLost && "Time's up. Try again!"}
-        </em>
-      </p>
-      <p>
-        <strong>{isIdle && "Select a card to start playing"}</strong>
-        <strong>{!isRunning && "Game over"}</strong>
-      </p>
-      {!isRunning && <RestartButton onClick={restart} />}
+      {isIdle && (
+        <p>
+          <strong>Select a card to start playing</strong>
+        </p>
+      )}
+      {!isRunning && (
+        <GameOver
+          isWon={isWon}
+          message={
+            isWon
+              ? `You won with ${timeLeft} seconds left!`
+              : "Time's up. Try again!"
+          }
+          onClick={restart}
+        />
+      )}
     </div>
   );
 }

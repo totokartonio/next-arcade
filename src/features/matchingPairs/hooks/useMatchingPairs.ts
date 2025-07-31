@@ -83,7 +83,6 @@ function useMatchingPairs(pairCount: number, totalTime: number) {
     handleFlip,
     restart,
     isWon: gameStatus === "won",
-    isLost: gameStatus === "lost",
     isIdle: gameStatus === "idle",
     isRunning: gameStatus === "running" || gameStatus === "idle",
   };

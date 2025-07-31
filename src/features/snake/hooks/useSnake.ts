@@ -107,6 +107,7 @@ function useSnake(
     snakePosition,
     foodPosition,
     isIdle: gameStatus === "idle",
+    isLost: gameStatus === "lost",
     isRunning: gameStatus === "running" || gameStatus === "idle",
     restart,
   };
