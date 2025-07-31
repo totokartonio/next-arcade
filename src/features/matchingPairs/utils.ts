@@ -31,4 +31,19 @@ function mapIds(cardsArray: MemoryCard[]) {
   return idsArray;
 }
 
-export { shuffleDeck, arrayToDeck, buildDeck, mapIds };
+function checkTentativeWin(guessedCards: MemoryCard[], deck: MemoryCard[]) {
+  return guessedCards.length === deck.length;
+}
+
+function checkTentativeGuess(cardArray: MemoryCard[]) {
+  return cardArray[0].value === cardArray[1].value;
+}
+
+export {
+  shuffleDeck,
+  arrayToDeck,
+  buildDeck,
+  mapIds,
+  checkTentativeWin,
+  checkTentativeGuess,
+};

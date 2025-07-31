@@ -3,7 +3,8 @@
   cursor: pointer;
 }
 
-.cardWrapper:hover {
+.cardWrapper:hover,
+.cardWrapper:focus {
   transform: scale(1.1);
   transition: transform 200ms ease-in;
 }
@@ -29,7 +30,8 @@
   backface-visibility: hidden;
 }
 
-.card:hover {
+.card:hover,
+.card:focus {
   box-shadow: 0 0 5px 2px var(--secondary);
 }
 

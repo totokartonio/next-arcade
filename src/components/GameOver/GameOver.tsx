@@ -12,7 +12,7 @@ function GameOver({ isWon, message, onClick }: Props) {
       <h2 className={styles.title}>Game Over</h2>
       {isWon && (
         <p>
-          <em>{"You won!"}</em>
+          <em className={styles.wonMessage}>You won!</em>
         </p>
       )}
       {message && <p>{message}</p>}

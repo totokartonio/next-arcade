@@ -47,6 +47,13 @@ function DropdownList({
       }`}
       id={id}
       onClick={onClick}
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+        const targetIsContainer = e.currentTarget === e.target;
+        if (targetIsContainer && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
       tabIndex={0}
     >
       {children}

@@ -26,3 +26,7 @@
   font-family: var(--font-press-start);
   font-size: 2rem;
 }
+
+.wonMessage {
+  font-size: 2rem;
+}

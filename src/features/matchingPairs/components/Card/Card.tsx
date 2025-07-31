@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./Card.module.css";
 
 type Props = {
@@ -13,13 +12,24 @@ function Card({ value, id, isFlipped, isMatched, onClick }: Props) {
   const flippingBack = !isFlipped && !isMatched;
 
   return (
-    <div className={styles.cardWrapper}>
+    <div
+      className={styles.cardWrapper}
+      tabIndex={0}
+      data-id={id}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
+    >
       <div
         id={id}
+        data-value={value}
         className={`${styles.card} ${
           isFlipped || isMatched ? styles.flipped : ""
         } ${flippingBack ? styles.flippingBack : ""}`}
-        onClick={onClick}
       >
         {(isFlipped || isMatched) && (
           <img

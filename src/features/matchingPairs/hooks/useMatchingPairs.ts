@@ -1,13 +1,17 @@
 import { useState } from "react";
 
 import type { GameStatus } from "@/types";
+import { startIfIdle } from "@/utils";
+
 import type { MemoryCard } from "../types";
 import { CARD_POOL } from "../constants";
 
 import useDeck from "./useDeck";
 import useTimer from "./useTimer";
-import { startIfIdle } from "@/utils";
+
 import { mapIds } from "../utils";
+import { checkTentativeGuess } from "../utils";
+import { checkTentativeWin } from "../utils";
 
 function useMatchingPairs(pairCount: number, totalTime: number) {
   const [gameStatus, setGameStatus] = useState<GameStatus>("idle");
@@ -24,29 +28,6 @@ function useMatchingPairs(pairCount: number, totalTime: number) {
     totalTime,
   });
 
-  function checkTentativeWin(array: MemoryCard[]) {
-    if (array.length === deck.length) {
-      setGameStatus("won");
-    }
-  }
-
-  function checkTentativeGuess(cardArray: MemoryCard[]) {
-    if (cardArray[0].value === cardArray[1].value) {
-      const nextGuessedCards = [...guessedCards, cardArray[0], cardArray[1]];
-      setGuessedCards(nextGuessedCards);
-      checkTentativeWin(nextGuessedCards);
-      setOpenCards([]);
-      return;
-    }
-
-    setIsBusy(true);
-    setTimeout(() => {
-      setOpenCards([]);
-      setIsBusy(false);
-    }, 600);
-    return;
-  }
-
   function handleFlip({ id, value }: MemoryCard) {
     startIfIdle(gameStatus, setGameStatus);
     if (gameStatus !== "running" && gameStatus !== "idle") return;
@@ -56,11 +37,25 @@ function useMatchingPairs(pairCount: number, totalTime: number) {
       guessedCards.some((card) => card.id === id)
     )
       return;
+
     const nextOpenCards = [...openCards, { id, value }];
     setOpenCards(nextOpenCards);
 
     if (nextOpenCards.length === 2) {
-      checkTentativeGuess(nextOpenCards);
+      if (checkTentativeGuess(nextOpenCards)) {
+        const nextGuessedCards = [...guessedCards, ...nextOpenCards];
+        setGuessedCards(nextGuessedCards);
+        if (checkTentativeWin(nextGuessedCards, deck)) {
+          setGameStatus("won");
+        }
+        setOpenCards([]);
+      } else {
+        setIsBusy(true);
+        setTimeout(() => {
+          setOpenCards([]);
+          setIsBusy(false);
+        }, 600);
+      }
     }
   }
 
