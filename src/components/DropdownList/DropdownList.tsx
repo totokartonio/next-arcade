@@ -6,7 +6,7 @@ import { transformLabel } from "@/utils";
 type Props = {
   id: string;
   isOpen: boolean;
-  gameTitle: string;
+  slug: string;
   onClick: () => void;
   children: ReactNode;
   className?: string;
@@ -14,7 +14,7 @@ type Props = {
 
 function DropdownList({
   isOpen,
-  gameTitle,
+  slug,
   id,
   onClick,
   className,
@@ -59,7 +59,7 @@ function DropdownList({
                 <MagicButton
                   as="link"
                   variant="primary"
-                  href={`/arcade/${gameTitle}?difficulty=${option}`}
+                  href={`/arcade/${slug}?difficulty=${option}`}
                 >
                   {transformLabel(option)}
                 </MagicButton>

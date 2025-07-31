@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./GameSelector.module.css";
 import DropdownList from "../DropdownList";
-import { transformLabel } from "@/utils";
+import { GAMES_CATALOGUE } from "@/constants";
 
 function GameSelector() {
   const [isSelected, setIsSelected] = useState<string | null>(null);
@@ -16,20 +16,20 @@ function GameSelector() {
     setIsSelected(id);
   }
 
-  const games = ["hangman", "snake", "matching-pairs"];
+  const games = Object.values(GAMES_CATALOGUE);
 
   return (
     <div className={styles.container}>
-      {games.map((game) => (
+      {games.map(({ title, slug }) => (
         <DropdownList
-          gameTitle={game}
-          id={game}
-          key={game}
-          onClick={() => handleOnClick(game)}
-          isOpen={isSelected === game}
+          slug={slug}
+          id={slug}
+          key={slug}
+          onClick={() => handleOnClick(slug)}
+          isOpen={isSelected === slug}
           className={styles.gameOption}
         >
-          {transformLabel(game)}
+          {title}
         </DropdownList>
       ))}
     </div>

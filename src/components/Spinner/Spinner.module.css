@@ -1,0 +1,56 @@
+/* Design from https://github.com/n3r4zzurr0/svg-spinners */
+.container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg {
+  display: block;
+}
+
+.rect {
+  fill: var(--foreground);
+  animation: spinner-move 2.4s linear infinite;
+  animation-delay: -2.4s;
+}
+
+.delay1 {
+  animation-delay: -1.6s;
+}
+
+.delay2 {
+  animation-delay: -0.8s;
+}
+
+@keyframes spinner-move {
+  8.33% {
+    x: 13px;
+    y: 1px;
+  }
+  25% {
+    x: 13px;
+    y: 1px;
+  }
+  33.3% {
+    x: 13px;
+    y: 13px;
+  }
+  50% {
+    x: 13px;
+    y: 13px;
+  }
+  58.33% {
+    x: 1px;
+    y: 13px;
+  }
+  75% {
+    x: 1px;
+    y: 13px;
+  }
+  83.33% {
+    x: 1px;
+    y: 1px;
+  }
+}

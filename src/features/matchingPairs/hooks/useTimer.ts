@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { GameStatus } from "@/types";
 
 type Props = {
@@ -21,7 +21,9 @@ function useTimer({ gameStatus, setGameStatus, totalTime }: Props) {
     return () => clearInterval(id);
   }, [gameStatus, timeLeft, setGameStatus]);
 
-  const resetTimer = useCallback(() => setTimeLeft(totalTime), [totalTime]);
+  function resetTimer() {
+    setTimeLeft(totalTime);
+  }
 
   return { timeLeft, resetTimer };
 }

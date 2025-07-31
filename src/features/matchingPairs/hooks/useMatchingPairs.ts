@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import type { GameStatus } from "@/types";
 import type { MemoryCard } from "../types";

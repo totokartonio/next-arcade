@@ -1,4 +1,4 @@
-import { useState, useCallback, use } from "react";
+import { useState } from "react";
 
 import { buildDeck } from "../utils";
 import type { MemoryCard } from "../types";
@@ -8,9 +8,9 @@ function useDeck(pairCount: number, pool: readonly string[]) {
     buildDeck(pairCount, pool)
   );
 
-  const resetDeck = useCallback(() => {
+  function resetDeck () {
     setDeck(buildDeck(pairCount, pool));
-  }, [deck]);
+  };
 
   return { deck, resetDeck };
 }
