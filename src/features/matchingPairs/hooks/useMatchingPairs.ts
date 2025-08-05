@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import type { GameStatus } from "@/types";
 import { startIfIdle } from "@/utils";
+import useGameSounds from "@/hooks/useGameSounds";
 
 import type { MemoryCard } from "../types";
 import { CARD_POOL } from "../constants";
@@ -28,6 +29,9 @@ function useMatchingPairs(pairCount: number, totalTime: number) {
     totalTime,
   });
 
+  const { playOnFlip, playOnDisabled, playOnMatch, playOnWon } =
+    useGameSounds();
+
   function handleFlip({ id, value }: MemoryCard) {
     startIfIdle(gameStatus, setGameStatus);
     if (gameStatus !== "running" && gameStatus !== "idle") return;
@@ -41,17 +45,27 @@ function useMatchingPairs(pairCount: number, totalTime: number) {
     const nextOpenCards = [...openCards, { id, value }];
     setOpenCards(nextOpenCards);
 
+    playOnFlip();
+
     if (nextOpenCards.length === 2) {
       if (checkTentativeGuess(nextOpenCards)) {
         const nextGuessedCards = [...guessedCards, ...nextOpenCards];
+
+        setTimeout(() => {
+          playOnMatch();
+        }, 300);
+
         setGuessedCards(nextGuessedCards);
+
         if (checkTentativeWin(nextGuessedCards, deck)) {
+          playOnWon();
           setGameStatus("won");
         }
         setOpenCards([]);
       } else {
         setIsBusy(true);
         setTimeout(() => {
+          playOnDisabled();
           setOpenCards([]);
           setIsBusy(false);
         }, 600);

@@ -1,11 +1,21 @@
-import { ReactNode, useRef, useEffect, useState } from "react";
+import { ReactNode, useRef, useEffect } from "react";
+import useGameSounds from "@/hooks/useGameSounds";
+
 import styles from "./DropdownList.module.css";
-import MagicButton from "../ui/MagicButton";
-import { transformLabel } from "@/utils";
+
+import Trigger from "./Trigger";
+import OptionsList from "./OptionsList";
+
+type Option = {
+  label: string;
+  href: string;
+};
 
 type Props = {
   id: string;
   isOpen: boolean;
+  title?: string;
+  optionsArray: Option[];
   slug: string;
   onClick: () => void;
   children: ReactNode;
@@ -14,14 +24,13 @@ type Props = {
 
 function DropdownList({
   isOpen,
-  slug,
+  title,
+  optionsArray,
   id,
   onClick,
   className,
   children,
 }: Props) {
-  const difficultyOptions = ["easy", "medium", "hard"];
-
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,12 +41,14 @@ function DropdownList({
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        onClick(); // Parent's toggler will turn `isOpen` → false
+        onClick();
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen, onClick]);
+
+  const { playOnClick } = useGameSounds();
 
   return (
     <div
@@ -46,35 +57,18 @@ function DropdownList({
         isOpen && styles.open
       }`}
       id={id}
-      onClick={onClick}
+      tabIndex={0}
       onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         const targetIsContainer = e.currentTarget === e.target;
         if (targetIsContainer && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           onClick?.();
+          playOnClick();
         }
       }}
-      tabIndex={0}
     >
-      {children}
-      {isOpen && (
-        <div className={styles.dropdown}>
-          <span className={styles.text}>Select difficulty:</span>
-          <ul className={styles.list}>
-            {difficultyOptions.map((option, index) => (
-              <li key={index}>
-                <MagicButton
-                  as="link"
-                  variant="primary"
-                  href={`/arcade/${slug}?difficulty=${option}`}
-                >
-                  {transformLabel(option)}
-                </MagicButton>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <Trigger onClick={onClick}>{children}</Trigger>
+      {isOpen && <OptionsList optionsArray={optionsArray} title={title} />}
     </div>
   );
 }

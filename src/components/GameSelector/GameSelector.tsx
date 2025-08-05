@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./GameSelector.module.css";
 import DropdownList from "../DropdownList";
-import { GAMES_CATALOGUE } from "@/constants";
+import { GAMES_CATALOGUE, DIFFICULTIES } from "@/constants";
 
 function GameSelector() {
   const [isSelected, setIsSelected] = useState<string | null>(null);
@@ -20,18 +20,31 @@ function GameSelector() {
 
   return (
     <div className={styles.container}>
-      {games.map(({ title, slug }) => (
-        <DropdownList
-          slug={slug}
-          id={slug}
-          key={slug}
-          onClick={() => handleOnClick(slug)}
-          isOpen={isSelected === slug}
-          className={styles.gameOption}
-        >
-          {title}
-        </DropdownList>
-      ))}
+      {games.map(({ title, slug }) => {
+        const gameOptions = [];
+
+        for (let difficulty of DIFFICULTIES) {
+          gameOptions.push({
+            label: difficulty,
+            href: `/arcade/${slug}?difficulty=${difficulty}`,
+          });
+        }
+
+        return (
+          <DropdownList
+            slug={slug}
+            id={slug}
+            title={"Select difficulty:"}
+            optionsArray={gameOptions}
+            key={slug}
+            onClick={() => handleOnClick(slug)}
+            isOpen={isSelected === slug}
+            className={styles.gameOption}
+          >
+            {title}
+          </DropdownList>
+        );
+      })}
     </div>
   );
 }

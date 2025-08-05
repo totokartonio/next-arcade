@@ -1,0 +1,17 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.button {
+  max-width: 100px;
+}
+
+.hidden {
+  display: hidden;
+}
+
+.controlGroup {
+  margin-left: auto;
+}

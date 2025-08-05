@@ -37,6 +37,8 @@
     hsl(240, 10%, 45%) 92%,
     hsl(240, 10%, 20%) 100%
   );
+
+  --header-height: 180px;
 }
 
 @media (prefers-color-scheme: dark) {

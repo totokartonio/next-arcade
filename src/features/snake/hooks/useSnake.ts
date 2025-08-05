@@ -3,6 +3,7 @@ import React from "react";
 import type { GameStatus } from "@/types";
 import type { Vector, DirectionName } from "../types";
 import { SNAKE_INITIAL_POSITION, FOOD_INITIAL_POSITION } from "../constants";
+import useGameSounds from "@/hooks/useGameSounds";
 
 import { tileEquals, rollFood } from "../utils";
 import useDirection from "./useDirection";
@@ -31,6 +32,8 @@ function useSnake(
   const [direction, setDirection] = React.useState<Vector>(
     DIRECTIONS_MAP.RIGHT
   );
+
+  const { playOnBite, playOnLose } = useGameSounds();
 
   const queuedDirection = useDirection(
     direction,
@@ -61,6 +64,7 @@ function useSnake(
             newHead.y < 0 ||
             newHead.y >= boardHeight)
         ) {
+          playOnLose();
           setGameStatus("lost");
           return prev;
         }
@@ -78,12 +82,15 @@ function useSnake(
           ? [newHead, ...prev]
           : [newHead, ...prev.slice(0, -1)];
 
-        if (ate)
+        if (ate) {
+          playOnBite();
           setFoodPosition(rollFood(nextSnake, boardWidth, boardHeight, tile));
+        }
 
         if (
           nextSnake.slice(1).some((snakePart) => tileEquals(snakePart, newHead))
         ) {
+          playOnLose();
           setGameStatus("lost");
           return prev;
         }

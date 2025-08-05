@@ -1,13 +1,19 @@
 import { useState } from "react";
+import useGameSounds from "@/hooks/useGameSounds";
 
 function useAttempts(max: number, onLose: () => void) {
   const [attempts, setAttempts] = useState(max);
+
+  const { playOnLose } = useGameSounds();
 
   //Wrong guess
   function consumeAttempt() {
     setAttempts((prevAttempts) => {
       const next = prevAttempts - 1;
-      if (next === 0) onLose(); //Check if game is lost
+      if (next === 0) {
+        playOnLose();
+        onLose();
+      } //Check if game is lost
       return next;
     });
   }
