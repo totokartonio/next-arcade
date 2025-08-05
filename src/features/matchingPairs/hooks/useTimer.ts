@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { GameStatus } from "@/types";
+import useGameSounds from "@/hooks/useGameSounds";
 
 type Props = {
   gameStatus: GameStatus;
@@ -10,9 +11,12 @@ type Props = {
 function useTimer({ gameStatus, setGameStatus, totalTime }: Props) {
   const [timeLeft, setTimeLeft] = useState(totalTime);
 
+  const { playOnLose } = useGameSounds();
+
   useEffect(() => {
     if (gameStatus !== "running") return;
     if (timeLeft === 0) {
+      playOnLose();
       setGameStatus("lost");
       return;
     }

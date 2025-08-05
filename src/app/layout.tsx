@@ -4,6 +4,7 @@ import { Monoton, Press_Start_2P, VT323 } from "next/font/google";
 import styles from "./page.module.css";
 import "../styles/globals.css";
 import "../styles/reset.css";
+import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
   title: "Next Arcade",
@@ -44,6 +45,7 @@ export default function RootLayout({
       <body>
         <header className={styles.header}>
           <h1 className={styles.title}>Next Arcade</h1>
+          <Nav />
         </header>
         <main className={styles.main}>{children}</main>
       </body>

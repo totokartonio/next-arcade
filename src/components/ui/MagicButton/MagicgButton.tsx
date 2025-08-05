@@ -4,11 +4,13 @@ https://www.joshwcomeau.com/animation/3d-button/ */
 import Link from "next/link";
 import { ReactNode } from "react";
 import styles from "./MagicButton.module.css";
+import useGameSounds from "@/hooks/useGameSounds";
 
 type CommonProps = {
   children: ReactNode;
   variant: "primary" | "secondary" | "keyButton";
   className?: string;
+  enableOnClickSound?: boolean;
 };
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
@@ -25,6 +27,8 @@ type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
 type Props = ButtonProps | LinkProps;
 
 function MagicButton(props: Props) {
+  const { playOnHover, playOnToggle } = useGameSounds();
+
   const content = (
     <>
       <span className={styles.shadow}></span>
@@ -34,11 +38,21 @@ function MagicButton(props: Props) {
   );
 
   if (props.as === "link") {
-    const { as, href, className, variant, ...rest } = props;
+    const {
+      as,
+      href,
+      className,
+      variant,
+      enableOnClickSound = true,
+      ...rest
+    } = props;
     return (
       <Link
         href={href}
         className={`${styles.container} ${styles[variant]}`}
+        onMouseEnter={() => playOnHover()}
+        onKeyDown={() => playOnToggle()}
+        {...(enableOnClickSound ? { onMouseDown: () => playOnToggle() } : {})}
         {...rest}
       >
         <div className={`${styles.back} ${className || ""}`}>{content}</div>
@@ -46,10 +60,13 @@ function MagicButton(props: Props) {
     );
   }
 
-  const { as, className, variant, ...rest } = props;
+  const { as, className, variant, enableOnClickSound = true, ...rest } = props;
   return (
     <button
       className={`${styles.back} ${styles[variant]} ${className || ""}`}
+      onMouseEnter={() => playOnHover()}
+      onKeyDown={() => playOnToggle()}
+      {...(enableOnClickSound ? { onMouseDown: () => playOnToggle() } : {})}
       {...rest}
     >
       {content}

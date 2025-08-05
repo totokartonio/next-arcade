@@ -3,6 +3,7 @@ import { useEffect } from "react";
 function useKeyboardListener(onKey: (key: string) => void, active: boolean) {
   useEffect(() => {
     if (!active) return;
+
     function handleKeyDown(event: KeyboardEvent) {
       return onKey(event.key);
     }

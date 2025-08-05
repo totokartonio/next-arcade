@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import styles from "./page.module.css";
-import LinkToHub from "@/components/LinkToHub";
 import { getTitleFromSlug } from "@/utils";
 import type { GameSlug } from "@/types";
 
@@ -27,7 +26,6 @@ async function GameLayout({
   return (
     <>
       <div>
-        <LinkToHub />
         <h2 className={styles.title}>{`${title} Game`}</h2>
       </div>
       <div className={styles.content}>{children}</div>

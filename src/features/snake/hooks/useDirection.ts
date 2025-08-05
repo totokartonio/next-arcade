@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import type { Vector, DirectionName } from "../types";
 import type { GameStatus } from "@/types";
 import { startIfIdle } from "@/utils";
+import useGameSounds from "@/hooks/useGameSounds";
 
 function useDirection(
   direction: Vector,
@@ -10,6 +11,8 @@ function useDirection(
   directionsMap: Record<DirectionName, Vector>
 ) {
   const queuedDirection = useRef<Vector | null>(null);
+
+  const { playOnTurn } = useGameSounds();
 
   useEffect(() => {
     function chooseDirection(key: string) {
@@ -43,6 +46,8 @@ function useDirection(
       if (gameStatus !== "running") return;
       const wanted = chooseDirection(event.key);
       if (!wanted) return;
+
+      playOnTurn();
 
       queuedDirection.current = directionsMap[wanted];
     }

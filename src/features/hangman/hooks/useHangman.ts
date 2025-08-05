@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ATTEMPTS } from "../data";
 import type { LetterEntry } from "../types";
 import type { GameStatus, Difficulty } from "@/types";
+import useGameSounds from "@/hooks/useGameSounds";
 
 import useAttempts from "./useAttempts";
 import useWord from "./useWord";
@@ -20,6 +21,8 @@ function useHangman(difficulty: Difficulty = "easy") {
   );
   const [usedLetters, setUsedLetters] = useState<Set<string>>(() => new Set());
 
+  const { playOnToggle, playOnDisabled, playOnWon } = useGameSounds();
+
   const { attempts, consumeAttempt, resetAttempts } = useAttempts(
     ATTEMPTS,
     () => setGameStatus("lost")
@@ -28,6 +31,7 @@ function useHangman(difficulty: Difficulty = "easy") {
   function checkIfGameIsWon(entries: LetterEntry[]) {
     if (entries.every((entry) => !entry.isHidden)) {
       setGameStatus("won");
+      playOnWon();
       return;
     }
   }
@@ -43,7 +47,12 @@ function useHangman(difficulty: Difficulty = "easy") {
     const letter = rawLetter.toUpperCase();
 
     //Check if letter was already used or pressed key is not a letter
-    if (usedLetters.has(letter) || !/^[A-Z]$/.test(letter)) return;
+    if (usedLetters.has(letter) || !/^[A-Z]$/.test(letter)) {
+      playOnDisabled();
+      return;
+    }
+
+    playOnToggle();
 
     //Add letter to used letters array
     addLetterToUsedLetters(letter);

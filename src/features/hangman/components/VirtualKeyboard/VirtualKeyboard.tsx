@@ -20,6 +20,7 @@ function VirtualKeyboard({ onClick, usedLetters, disabled }: Props) {
             as="button"
             variant="keyButton"
             onClick={() => onClick(letter)}
+            enableOnClickSound={false}
             disabled={usedLetters.has(letter)}
           >
             {letter}
