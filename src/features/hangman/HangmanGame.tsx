@@ -8,6 +8,8 @@ import AttemptsCounter from "@/features/hangman/components/AttemptsCounter";
 import VirtualKeyboard from "@/features/hangman/components/VirtualKeyboard";
 import WordBoard from "@/features/hangman/components/WordBoard";
 import GameOver from "@/components/GameOver";
+import HangmanDrawing from "./components/HangmanDrawing";
+import { ATTEMPTS } from "./data";
 
 function HangmanGame() {
   const selectedDifficulty = useCheckSearchParams();
@@ -25,13 +27,17 @@ function HangmanGame() {
   return (
     <div className={styles.contentContainer}>
       <AttemptsCounter attempts={attempts} />
-      <WordBoard answer={answer} />
-      <VirtualKeyboard
-        onClick={handleGuess}
-        usedLetters={usedLetters}
-        disabled={!isRunning}
-      />
-      {!isRunning && (
+      <HangmanDrawing wrongAttempts={ATTEMPTS - attempts} />
+      {isRunning ? (
+        <>
+          <WordBoard answer={answer} />
+          <VirtualKeyboard
+            onClick={handleGuess}
+            usedLetters={usedLetters}
+            disabled={!isRunning}
+          />
+        </>
+      ) : (
         <GameOver
           isWon={isWon}
           message={!isWon ? `The word was ${word}` : null}

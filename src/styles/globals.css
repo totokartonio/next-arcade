@@ -1,13 +1,11 @@
 :root {
-  --background: #ffffff;
-  --foreground: hsl(240, 33%, 8%);
+  --background: hsl(240, 33%, 8%);
+  --foreground: #ededed;
 
   --primary: #ff296d; /* Main accents, buttons */
   --secondary: #00eaff; /* Highlights, links */
-  --warning: hsl(54, 100%, 50%); /* Score pop, alerts */
   --neutral-900: #0e0e1b; /* Page background */
   --neutral-700: #222239; /* Cards, panels */
-  --neutral-600: hsl(240, 25%, 28%);
   --neutral-500: #494979;
   --neutral-200: #d1d1e0;
   --neutral-dusty-gray: hsl(240, 10%, 62%);
@@ -37,25 +35,19 @@
     hsl(240, 10%, 45%) 92%,
     hsl(240, 10%, 20%) 100%
   );
-
-  --header-height: 180px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: hsl(240, 33%, 8%);
-    --foreground: #ededed;
-  }
 }
 
 html,
 body {
-  height: 100vh;
+  height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-vt323), sans-serif;

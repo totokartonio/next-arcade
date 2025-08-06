@@ -1,7 +1,8 @@
 .navigation {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding-block: 5px;
+  padding-inline: 20px;
 }
 
 .button {

@@ -24,12 +24,12 @@ async function GameLayout({
   const title = getTitleFromSlug(game);
 
   return (
-    <>
+    <div className={styles.gameContainer}>
       <div>
         <h2 className={styles.title}>{`${title} Game`}</h2>
       </div>
       <div className={styles.content}>{children}</div>
-    </>
+    </div>
   );
 }
 

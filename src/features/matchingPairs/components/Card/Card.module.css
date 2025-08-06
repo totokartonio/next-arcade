@@ -37,7 +37,7 @@
 
 .flipped {
   animation: flip2D 300ms ease forwards;
-  background-color: white;
+  background-color: var(--foreground);
   color: black;
   transform: scaleX(1);
 }
@@ -62,7 +62,7 @@
 @keyframes flip2DOut {
   0% {
     transform: scaleX(1);
-    background-color: white;
+    background-color: var(--foreground);
     color: black;
   }
   50% {
