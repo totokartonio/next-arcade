@@ -76,7 +76,7 @@
 /* Primary */
 .primary .front {
   background: var(--primary);
-  color: white;
+  color: var(--foreground);
 }
 
 .primary .edge {
@@ -96,7 +96,7 @@
 /* keyButton */
 .keyButton .front {
   background: var(--neutral-dusty-gray);
-  color: white;
+  color: var(--foreground);
   font-size: 1.5rem;
   width: 40px;
 }

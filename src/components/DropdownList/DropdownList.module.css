@@ -1,6 +1,6 @@
 .dropdownContainer {
   position: relative;
-  border: 1px solid white;
+  border: 1px solid var(--foreground);
   border-radius: 10px;
   padding: 5px;
   cursor: pointer;
@@ -13,9 +13,9 @@
 .dropdown {
   position: absolute;
   left: 0;
-  top: calc(100% + 1rem);
+  top: calc(100% + 0.7rem);
   padding: 5px;
-  border: 1px solid white;
+  border: 1px solid var(--foreground);
   border-radius: 10px;
   width: 100%;
   min-width: 150px;
@@ -52,8 +52,8 @@
 }
 
 .open {
-  transform: scale(1.2);
+  transform: scale(1.15);
   transition: transform 250ms cubic-bezier(0.18, 0.81, 0.45, 1.58);
-  z-index: 1;
+  z-index: 2;
   box-shadow: 0 0 5px 2px var(--secondary);
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Monoton, Press_Start_2P, VT323 } from "next/font/google";
 
 import styles from "./page.module.css";
@@ -48,6 +49,11 @@ export default function RootLayout({
           <Nav />
         </header>
         <main className={styles.main}>{children}</main>
+        <footer className={styles.footer}>
+          <Link href={"/"} className={styles.footerLink}>
+            About
+          </Link>
+        </footer>
       </body>
     </html>
   );

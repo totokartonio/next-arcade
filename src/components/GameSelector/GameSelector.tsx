@@ -20,7 +20,7 @@ function GameSelector() {
 
   return (
     <div className={styles.container}>
-      {games.map(({ title, slug }) => {
+      {games.map(({ title, slug, img }) => {
         const gameOptions = [];
 
         for (let difficulty of DIFFICULTIES) {
@@ -41,6 +41,11 @@ function GameSelector() {
             isOpen={isSelected === slug}
             className={styles.gameOption}
           >
+            <img
+              src={img.src}
+              alt={`${title} cover`}
+              className={styles.cover}
+            />
             {title}
           </DropdownList>
         );
