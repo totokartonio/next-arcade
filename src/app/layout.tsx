@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { Monoton, Press_Start_2P, VT323 } from "next/font/google";
 
@@ -6,6 +7,7 @@ import styles from "./page.module.css";
 import "../styles/globals.css";
 import "../styles/reset.css";
 import Nav from "@/components/Nav";
+import Spinner from "@/components/Spinner";
 
 export const metadata: Metadata = {
   title: "Next Arcade",
@@ -48,9 +50,11 @@ export default function RootLayout({
           <h1 className={styles.title}>Next Arcade</h1>
           <Nav />
         </header>
-        <main className={styles.main}>{children}</main>
+        <main className={styles.main}>
+          <Suspense fallback={<Spinner />}>{children}</Suspense>
+        </main>
         <footer className={styles.footer}>
-          <Link href={"/"} className={styles.footerLink}>
+          <Link href={"/about"} className={styles.footerLink}>
             About
           </Link>
         </footer>
