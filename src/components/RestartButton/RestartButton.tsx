@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import styles from "./RestartButton.module.css";
 import useGameSounds from "@/hooks/useGameSounds";
+import useCheckIfIsMobile from "@/hooks/useCheckIfIsMobile";
 import MagicButton from "../ui/MagicButton";
 
 function RestartButton({ onClick }: { onClick: () => void }) {
   const { playOnToggle } = useGameSounds();
+
+  const isMobile = useCheckIfIsMobile();
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -27,7 +30,7 @@ function RestartButton({ onClick }: { onClick: () => void }) {
       >
         New game
       </MagicButton>
-      <p>Press SPACE to start a new game</p>
+      {!isMobile && <p>Press SPACE to start a new game</p>}
     </>
   );
 }

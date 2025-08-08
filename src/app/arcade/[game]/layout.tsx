@@ -25,9 +25,7 @@ async function GameLayout({
 
   return (
     <div className={styles.gameContainer}>
-      <div>
-        <h2 className={styles.title}>{`${title} Game`}</h2>
-      </div>
+      <h2 className={styles.title}>{`${title} Game`}</h2>
       <div className={styles.content}>{children}</div>
     </div>
   );

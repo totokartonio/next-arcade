@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import { useCallback } from "react";
 import styles from "./SnakeGame.module.css";
 
 import useCheckSearchParams from "@/hooks/useCheckSearchParams";
+import MobileGameControls from "@/components/MobileGameControls";
 
 import { CANVAS_DIMENSIONS, SNAKE_DIFFICULTY } from "./constants";
 import useSnake from "@/features/snake/hooks/useSnake";
@@ -19,6 +20,26 @@ function SnakeGame() {
   const game = useSnake(boardW, boardH, tile, speed, strictBorder);
   const canvasRef = useCanvas(game, boardW, boardH, tile);
 
+  const handleDirectionChange = useCallback(
+    (direction: "up" | "down" | "left" | "right") => {
+      const keyMap = {
+        up: "ArrowUp",
+        down: "ArrowDown",
+        left: "ArrowLeft",
+        right: "ArrowRight",
+      };
+
+      const event = new KeyboardEvent("keydown", {
+        key: keyMap[direction],
+        code: keyMap[direction],
+        bubbles: true,
+      });
+
+      window.dispatchEvent(event);
+    },
+    []
+  );
+
   return (
     <div className={styles.contentContainer}>
       <canvas
@@ -33,6 +54,7 @@ function SnakeGame() {
         </p>
       )}
       {game.isLost && <GameOver isWon={!game.isLost} onClick={game.restart} />}
+      <MobileGameControls onDirectionChange={handleDirectionChange} />
     </div>
   );
 }

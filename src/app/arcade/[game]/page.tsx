@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { GAMES_CATALOGUE } from "@/constants";
 import { Suspense } from "react";
-import styles from "./page.module.css";
 import Spinner from "@/components/Spinner";
 
 async function GamePage({ params }: { params: { game: string } }) {

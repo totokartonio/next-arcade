@@ -47,3 +47,22 @@
 .footerLink:hover {
   color: var(--dark-dusty-gray);
 }
+
+.errorTitle {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-align: center;
+  color: var(--secondary);
+}
+
+.errorMessage {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 525px) {
+  .title {
+    font-size: 3rem;
+  }
+}

@@ -1,4 +1,5 @@
 import styles from "./GameOver.module.css";
+
 import RestartButton from "../RestartButton";
 type Props = {
   isWon: boolean;

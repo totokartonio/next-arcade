@@ -17,3 +17,42 @@
   display: flex;
   justify-content: center;
 }
+
+.errorContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorTitle {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-align: center;
+  color: var(--secondary);
+}
+
+.errorMessage {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.retryButton,
+.homeButton {
+  min-width: 120px;
+  text-align: center;
+}
+
+@media (max-width: 525px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}

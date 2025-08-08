@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 function AboutPage() {
   return (
-    <div>
+    <div className={styles.container}>
       <h2 className={styles.title}>About &amp; Acknowledgments</h2>
 
       <p>
