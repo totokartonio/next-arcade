@@ -30,8 +30,6 @@ function useWord(difficulty: Difficulty) {
       ? setUsedWords([])
       : setUsedWords(nextUsedWords);
 
-    console.log(nextWord);
-
     return nextWord;
   }
 

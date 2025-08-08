@@ -1,10 +1,13 @@
 .container {
   display: flex;
+  flex-wrap: wrap;
   gap: 50px;
-  justify-self: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .gameOption {
+  max-width: 140px;
   width: 100%;
   min-width: 150px;
   text-align: center;

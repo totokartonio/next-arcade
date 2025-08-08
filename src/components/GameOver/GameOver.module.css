@@ -6,7 +6,7 @@
   align-items: center;
   background-color: var(--neutral-700);
   border-radius: 5px;
-  width: 600px;
+  max-width: 600px;
   padding: 20px;
   margin-bottom: 50px;
 }
@@ -30,4 +30,10 @@
 
 .wonMessage {
   font-size: 2rem;
+}
+
+@media (max-width: 525px) {
+  .title {
+    font-size: 1.5rem;
+  }
 }
