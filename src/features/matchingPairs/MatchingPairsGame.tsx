@@ -14,7 +14,7 @@ import useMatchingPairs from "@/features/matchingPairs/hooks/useMatchingPairs";
 import GameOver from "@/components/GameOver";
 
 function MatchingPairsGame() {
-  const selectedDifficulty = useCheckSearchParams();
+  const { selectedDifficulty, defaultDeck } = useCheckSearchParams();
   const { pairs, totalTime } = MP_DIFFICULTY[selectedDifficulty];
 
   const {
@@ -27,10 +27,10 @@ function MatchingPairsGame() {
     isWon,
     isIdle,
     isRunning,
-  } = useMatchingPairs(pairs, totalTime);
+  } = useMatchingPairs(pairs, totalTime, defaultDeck);
 
   return (
-    <div className={styles.contentContainer}>
+    <div className={styles.contentContainer} data-testid="game-content">
       <Timer timeLeft={timeLeft} />
       <CardsRow>
         {deck.map(({ value, id }) => {

@@ -12,7 +12,7 @@ function MobileGameControls({
   if (!isMobile) return null;
 
   return (
-    <div className={styles.mobileControls}>
+    <div className={styles.mobileControls} data-testid="mobile-controls">
       <div className={styles.dpad}>
         <div className={styles.upperRow}>
           <MagicButton

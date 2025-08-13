@@ -24,7 +24,7 @@ function Nav() {
         </MagicButton>
       )}
       <div className={styles.controlGroup}>
-        <MuteButton />
+        <MuteButton data-testid="mute-button" />
       </div>
     </nav>
   );

@@ -13,7 +13,7 @@ import useCanvas from "@/features/snake/hooks/useCanvas";
 import GameOver from "@/components/GameOver";
 
 function SnakeGame() {
-  const selectedDifficulty = useCheckSearchParams();
+  const { selectedDifficulty } = useCheckSearchParams();
 
   const { speed, strictBorder } = SNAKE_DIFFICULTY[selectedDifficulty];
   const { tile, boardW, boardH } = CANVAS_DIMENSIONS;
@@ -41,7 +41,7 @@ function SnakeGame() {
   );
 
   return (
-    <div className={styles.contentContainer}>
+    <div className={styles.contentContainer} data-testid="game-content">
       <canvas
         ref={canvasRef}
         width={boardW}

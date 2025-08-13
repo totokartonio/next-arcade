@@ -17,6 +17,7 @@ function VirtualKeyboard({ onClick, usedLetters, disabled }: Props) {
         {KEYS.split("").map((letter) => (
           <MagicButton
             key={letter}
+            id={letter}
             as="button"
             variant="keyButton"
             onClick={() => onClick(letter)}
