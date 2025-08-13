@@ -14,7 +14,11 @@ import { mapIds } from "../utils";
 import { checkTentativeGuess } from "../utils";
 import { checkTentativeWin } from "../utils";
 
-function useMatchingPairs(pairCount: number, totalTime: number) {
+function useMatchingPairs(
+  pairCount: number,
+  totalTime: number,
+  defaultDeck?: string[] | null
+) {
   const [gameStatus, setGameStatus] = useState<GameStatus>("idle");
 
   //cards state
@@ -22,7 +26,7 @@ function useMatchingPairs(pairCount: number, totalTime: number) {
   const [guessedCards, setGuessedCards] = useState<MemoryCard[]>([]);
   const [isBusy, setIsBusy] = useState(false);
 
-  const { deck, resetDeck } = useDeck(pairCount, CARD_POOL);
+  const { deck, resetDeck } = useDeck(pairCount, CARD_POOL, defaultDeck);
   const { timeLeft, resetTimer } = useTimer({
     gameStatus,
     setGameStatus,

@@ -9,14 +9,6 @@ function shuffleDeck(array: any[]) {
   return copy;
 }
 
-function arrayToDeck(array: any[]) {
-  const objectList = [];
-  for (let i = 0; i < array.length; i++) {
-    objectList.push({ value: array[i], id: `${array[i]}-${i}` });
-  }
-  return objectList;
-}
-
 function buildDeck(pairCount: number, pool: readonly string[]) {
   if (pairCount > pool.length) {
     throw new Error("Not enough icons in CARD_POOL");
@@ -41,7 +33,6 @@ function checkTentativeGuess(cardArray: MemoryCard[]) {
 
 export {
   shuffleDeck,
-  arrayToDeck,
   buildDeck,
   mapIds,
   checkTentativeWin,

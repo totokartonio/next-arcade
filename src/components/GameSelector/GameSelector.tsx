@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import styles from "./GameSelector.module.css";
 import DropdownList from "../DropdownList";
 import { GAMES_CATALOGUE, DIFFICULTIES } from "@/constants";
@@ -41,8 +42,10 @@ function GameSelector() {
             isOpen={isSelected === slug}
             className={styles.gameOption}
           >
-            <img
+            <Image
               src={img.src}
+              width={140}
+              height={190}
               alt={`${title} cover`}
               className={styles.cover}
             />

@@ -17,6 +17,7 @@ function Card({ value, id, isFlipped, isMatched, onClick }: Props) {
       tabIndex={0}
       data-id={id}
       onClick={onClick}
+      data-testid="mp-card"
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();

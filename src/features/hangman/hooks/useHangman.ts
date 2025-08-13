@@ -11,11 +11,16 @@ import useKeyboardListener from "./useKeyboardListener";
 
 import { toAnswerArray } from "../utils";
 
-function useHangman(difficulty: Difficulty = "easy") {
+function useHangman(
+  difficulty: Difficulty = "easy",
+  defaultWord?: string | null
+) {
   const getNextWord = useWord(difficulty);
 
   const [gameStatus, setGameStatus] = useState<GameStatus>("running");
-  const [word, setWord] = useState<string>(() => getNextWord());
+  const [word, setWord] = useState<string>(
+    defaultWord?.toUpperCase() ?? (() => getNextWord())
+  );
   const [answer, setAnswer] = useState<LetterEntry[]>(() =>
     toAnswerArray(word)
   );

@@ -12,7 +12,7 @@ import HangmanDrawing from "./components/HangmanDrawing";
 import { ATTEMPTS } from "./data";
 
 function HangmanGame() {
-  const selectedDifficulty = useCheckSearchParams();
+  const { selectedDifficulty, defaultWord } = useCheckSearchParams();
 
   const {
     attempts,
@@ -23,9 +23,9 @@ function HangmanGame() {
     handleGuess,
     restart,
     word,
-  } = useHangman(selectedDifficulty);
+  } = useHangman(selectedDifficulty, defaultWord);
   return (
-    <div className={styles.contentContainer}>
+    <div className={styles.contentContainer} data-testid="game-content">
       <AttemptsCounter attempts={attempts} />
       <HangmanDrawing wrongAttempts={ATTEMPTS - attempts} />
       {isRunning ? (

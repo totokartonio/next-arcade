@@ -6,7 +6,7 @@
   align-items: center;
   background-color: var(--neutral-700);
   border-radius: 5px;
-  max-width: 600px;
+  width: 600px;
   padding: 20px;
   margin-bottom: 50px;
 }
@@ -33,6 +33,9 @@
 }
 
 @media (max-width: 525px) {
+  .container {
+    width: 100%;
+  }
   .title {
     font-size: 1.5rem;
   }

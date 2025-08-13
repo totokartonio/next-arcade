@@ -1,10 +1,16 @@
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import { isDifficulty } from "@/utils";
 import { Difficulty } from "@/types";
 
-function useCheckSearchParams() {
+type Props = {
+  selectedDifficulty: Difficulty;
+  defaultWord: string | null;
+  defaultDeck: string[] | null;
+};
+
+function useCheckSearchParams(): Props {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -21,7 +27,18 @@ function useCheckSearchParams() {
     }
   }, [tentativeDifficulty, selectedDifficulty, router, searchParams]);
 
-  return selectedDifficulty;
+  const defaultWord = searchParams.get("word");
+
+  const defaultDeck = useMemo(() => {
+    const raw = searchParams.get("deck");
+    if (!raw) return null;
+    return raw
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  }, [searchParams]);
+
+  return { selectedDifficulty, defaultWord, defaultDeck };
 }
 
 export default useCheckSearchParams;

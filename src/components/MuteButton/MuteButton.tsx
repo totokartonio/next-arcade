@@ -11,7 +11,7 @@ function MuteButton() {
   const muted = useSoundStore((state) => state.muted);
   const toggleMute = useSoundStore((state) => state.toggleMute);
 
-  const { playOnToggle, playOnToggleForce } = useGameSounds();
+  const { playOnToggleForce } = useGameSounds();
 
   function handleOnClick() {
     if (muted) {
