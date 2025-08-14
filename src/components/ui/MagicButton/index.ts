@@ -1,1 +1,1 @@
-export { default } from "./MagicgButton";
+export { default } from "./MagicButton";

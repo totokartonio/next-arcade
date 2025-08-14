@@ -100,7 +100,19 @@ function useSnake(
     }, speed);
 
     return () => clearInterval(interval);
-  }, [direction, foodPosition, gameStatus, strictBorder]);
+  }, [
+    direction,
+    foodPosition,
+    gameStatus,
+    strictBorder,
+    boardHeight,
+    boardWidth,
+    playOnBite,
+    playOnLose,
+    queuedDirection,
+    speed,
+    tile,
+  ]);
 
   function restart() {
     setSnakePosition(SNAKE_INITIAL_POSITION);

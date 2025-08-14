@@ -54,7 +54,7 @@ function useDirection(
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [direction, gameStatus]);
+  }, [direction, gameStatus, directionsMap, playOnTurn, setGameStatus]);
 
   return queuedDirection;
 }

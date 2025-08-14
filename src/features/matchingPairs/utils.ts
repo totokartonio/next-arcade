@@ -1,6 +1,6 @@
 import { MemoryCard } from "./types";
 
-function shuffleDeck(array: any[]) {
+function shuffleDeck<T>(array: readonly T[]): T[] {
   const copy = [...array];
   for (let i = copy.length - 1; i >= 1; i--) {
     const j = Math.floor(Math.random() * (i + 1));

@@ -4,3 +4,19 @@
   align-items: center;
   gap: 20px;
 }
+
+.belowSlot {
+  min-height: 300px;
+}
+
+@media (min-width: 2560px) {
+  .contentContainer {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 525px) {
+  .belowSlot {
+    min-block-size: 150px;
+  }
+}

@@ -3,7 +3,10 @@
   top: 0;
   padding-top: 1rem;
   z-index: 1;
-  background-color: var(--neutral-900);
+  background: var(--header-gradient);
+  border-bottom: 2px solid var(--primary-overlay);
+  box-shadow: 0 6px 0 var(--secondary-overlay) inset,
+    0 12px 24px var(--secondary-overlay);
 }
 
 .title {
@@ -15,6 +18,7 @@
 }
 
 .main {
+  margin-block: 20px;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -35,11 +39,14 @@
   padding-block: 1rem;
   text-align: center;
   z-index: 1;
-  background-color: var(--neutral-900);
+  background: var(--footer-gradient);
+  border-top: 2px solid var(--primary-overlay);
+  box-shadow: 0 -6px 0 var(--secondary-overlay) inset,
+    0 -12px 24px var(--secondary-overlay);
 }
 
 .footerLink {
-  color: var(--neutral-500);
+  color: var(--neutral-dusty-gray);
   font-size: 1.3rem;
   text-decoration: none;
 }

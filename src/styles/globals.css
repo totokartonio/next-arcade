@@ -1,16 +1,18 @@
 :root {
   --background: hsl(240, 33%, 8%);
-  --foreground: #ededed;
+  --foreground: hsl(0, 0%, 93%);
 
-  --primary: #ff296d; /* Main accents, buttons */
-  --secondary: #00eaff; /* Highlights, links */
-  --neutral-900: #0e0e1b; /* Page background */
-  --neutral-700: #222239; /* Cards, panels */
-  --neutral-500: #494979;
-  --neutral-200: #d1d1e0;
+  --primary: hsl(341, 100%, 58%); /* Main accents, buttons */
+  --secondary: hsl(185, 100%, 50%); /* Highlights, links */
+  --neutral-900: hsl(240, 32%, 8%); /* Page background */
+  --neutral-700: hsl(240, 25%, 18%); /* Cards, panels */
+  --neutral-500: hsl(240, 25%, 38%);
+  --neutral-200: hsl(240, 19%, 85%);
   --neutral-dusty-gray: hsl(240, 10%, 62%);
-  --dark-dusty-gray: #606076;
+  --dark-dusty-gray: hsl(240, 10%, 42%);
   --glow-purple: hsl(254, 100%, 58%); /* Soft outer glow */
+  --primary-overlay: hsla(0, 0%, 100%, 0.06); /* --primary with 40% opacity */
+  --secondary-overlay: hsla(0, 0%, 0%, 0.4); /* --secondary with 6% opacity */
 
   --primary-linear-gradient: linear-gradient(
     to left,
@@ -34,6 +36,18 @@
     hsl(240, 10%, 42%) 8%,
     hsl(240, 10%, 45%) 92%,
     hsl(240, 10%, 20%) 100%
+  );
+
+  --header-gradient: linear-gradient(
+    180deg,
+    var(--neutral-700) 0%,
+    var(--neutral-900) 100%
+  );
+
+  --footer-gradient: linear-gradient(
+    180deg,
+    var(--neutral-700),
+    var(--neutral-900)
   );
 }
 

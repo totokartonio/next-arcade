@@ -36,7 +36,7 @@ function useCanvas(
 
     ctx.fillStyle = primaryColor;
     ctx.fillRect(foodPosition.x, foodPosition.y, tile, tile);
-  }, [snakePosition, foodPosition]);
+  }, [snakePosition, foodPosition, boardHeight, boardWidth, tile]);
 
   return canvasRef;
 }

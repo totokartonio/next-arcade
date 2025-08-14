@@ -14,7 +14,25 @@
   font-size: 1.5rem;
 }
 
-.cover {
+.imageContainer {
+  position: relative;
   width: 140px;
   height: 190px;
+}
+
+@media (min-width: 2560px) {
+  .container {
+    gap: 70px;
+  }
+
+  .gameOption {
+    max-width: 240px;
+    width: 100%;
+    min-width: 250px;
+  }
+
+  .imageContainer {
+    width: 240px;
+    height: 330px;
+  }
 }

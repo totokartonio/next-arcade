@@ -28,22 +28,24 @@ function HangmanGame() {
     <div className={styles.contentContainer} data-testid="game-content">
       <AttemptsCounter attempts={attempts} />
       <HangmanDrawing wrongAttempts={ATTEMPTS - attempts} />
-      {isRunning ? (
-        <>
-          <WordBoard answer={answer} />
-          <VirtualKeyboard
-            onClick={handleGuess}
-            usedLetters={usedLetters}
-            disabled={!isRunning}
+      <div className={styles.belowSlot}>
+        {isRunning ? (
+          <>
+            <WordBoard answer={answer} />
+            <VirtualKeyboard
+              onClick={handleGuess}
+              usedLetters={usedLetters}
+              disabled={!isRunning}
+            />
+          </>
+        ) : (
+          <GameOver
+            isWon={isWon}
+            message={!isWon ? `The word was ${word}` : null}
+            onClick={restart}
           />
-        </>
-      ) : (
-        <GameOver
-          isWon={isWon}
-          message={!isWon ? `The word was ${word}` : null}
-          onClick={restart}
-        />
-      )}
+        )}
+      </div>
     </div>
   );
 }

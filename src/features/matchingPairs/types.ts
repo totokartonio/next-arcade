@@ -1,6 +1,6 @@
 type MemoryCard = {
   id: string;
-  value: any;
+  value: string;
 };
 
 export type { MemoryCard };

@@ -23,7 +23,7 @@ function useTimer({ gameStatus, setGameStatus, totalTime }: Props) {
 
     const id = setInterval(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearInterval(id);
-  }, [gameStatus, timeLeft, setGameStatus]);
+  }, [gameStatus, timeLeft, setGameStatus, playOnLose]);
 
   function resetTimer() {
     setTimeLeft(totalTime);

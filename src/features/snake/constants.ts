@@ -2,27 +2,34 @@ import { Difficulty } from "@/types";
 
 import type { Vector } from "./types";
 
+const GRID_CELLS = 20 as const;
+
+const DEFAULT_TILE = 24;
+
 const CANVAS_DIMENSIONS = {
-  tile: 15,
-  boardW: 300,
-  boardH: 300,
+  tile: DEFAULT_TILE,
+  boardW: DEFAULT_TILE * GRID_CELLS,
+  boardH: DEFAULT_TILE * GRID_CELLS,
 } as const;
 
 const SNAKE_INITIAL_POSITION: Vector[] = [
   {
-    x: 45,
-    y: 45,
+    x: CANVAS_DIMENSIONS.tile * 3,
+    y: CANVAS_DIMENSIONS.tile * 3,
   },
   {
-    x: 30,
-    y: 45,
+    x: CANVAS_DIMENSIONS.tile * 2,
+    y: CANVAS_DIMENSIONS.tile * 3,
   },
   {
-    x: 15,
-    y: 45,
+    x: CANVAS_DIMENSIONS.tile,
+    y: CANVAS_DIMENSIONS.tile * 3,
   },
 ] as const;
-const FOOD_INITIAL_POSITION: Vector = { x: 195, y: 45 } as const;
+const FOOD_INITIAL_POSITION: Vector = {
+  x: CANVAS_DIMENSIONS.tile * 13,
+  y: CANVAS_DIMENSIONS.tile * 3,
+} as const;
 
 const SNAKE_DIFFICULTY = {
   easy: { speed: 120, strictBorder: false },

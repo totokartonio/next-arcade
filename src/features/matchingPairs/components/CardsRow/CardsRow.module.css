@@ -8,3 +8,13 @@
   justify-content: center;
   gap: 10px;
 }
+
+@media (min-width: 2560px) {
+  .cardsRowContainer {
+    width: 520px;
+  }
+
+  .cardsRow {
+    gap: 15px;
+  }
+}

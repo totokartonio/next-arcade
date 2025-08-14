@@ -42,13 +42,14 @@ function GameSelector() {
             isOpen={isSelected === slug}
             className={styles.gameOption}
           >
-            <Image
-              src={img.src}
-              width={140}
-              height={190}
-              alt={`${title} cover`}
-              className={styles.cover}
-            />
+            <div className={styles.imageContainer}>
+              <Image
+                src={img.src}
+                fill={true}
+                alt={`${title} cover`}
+                className={styles.cover}
+              />
+            </div>
             {title}
           </DropdownList>
         );
