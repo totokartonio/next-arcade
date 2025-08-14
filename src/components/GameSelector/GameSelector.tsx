@@ -24,7 +24,7 @@ function GameSelector() {
       {games.map(({ title, slug, img }) => {
         const gameOptions = [];
 
-        for (let difficulty of DIFFICULTIES) {
+        for (const difficulty of DIFFICULTIES) {
           gameOptions.push({
             label: difficulty,
             href: `/arcade/${slug}?difficulty=${difficulty}`,
