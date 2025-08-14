@@ -46,22 +46,24 @@ function MatchingPairsGame() {
           );
         })}
       </CardsRow>
-      {isIdle && (
-        <p>
-          <strong>Select a card to start playing</strong>
-        </p>
-      )}
-      {!isRunning && (
-        <GameOver
-          isWon={isWon}
-          message={
-            isWon
-              ? `You won with ${timeLeft} seconds left!`
-              : "Time's up. Try again!"
-          }
-          onClick={restart}
-        />
-      )}
+      <div className={styles.belowSlot}>
+        {isIdle && (
+          <p>
+            <strong>Select a card to start playing</strong>
+          </p>
+        )}
+        {!isRunning && (
+          <GameOver
+            isWon={isWon}
+            message={
+              isWon
+                ? `You won with ${timeLeft} seconds left!`
+                : "Time's up. Try again!"
+            }
+            onClick={restart}
+          />
+        )}
+      </div>
     </div>
   );
 }

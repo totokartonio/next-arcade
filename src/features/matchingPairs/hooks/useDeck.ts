@@ -28,7 +28,7 @@ function useDeck(
     }
 
     return buildDeck(pairCount, pool);
-  }, [pairCount, pool, defaultDeck?.join(",")]);
+  }, [pairCount, pool, defaultDeck]);
 
   const [deck, setDeck] = useState<MemoryCard[]>(initialDeck);
 

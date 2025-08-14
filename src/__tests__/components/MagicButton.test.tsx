@@ -6,7 +6,14 @@ import MagicButton from "@/components/ui/MagicButton";
 vi.mock("next/link", () => {
   return {
     __esModule: true,
-    default: ({ children, href, ...props }: any) => (
+    default: ({
+      children,
+      href,
+      ...props
+    }: {
+      children: React.ReactNode;
+      href: string;
+    } & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
       <a href={href} {...props}>
         {children}
       </a>

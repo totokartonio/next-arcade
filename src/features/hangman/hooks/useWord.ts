@@ -26,9 +26,11 @@ function useWord(difficulty: Difficulty) {
 
     const nextUsedWords = [...usedWords, nextWord];
 
-    bank.length === nextUsedWords.length
-      ? setUsedWords([])
-      : setUsedWords(nextUsedWords);
+    if (bank.length === nextUsedWords.length) {
+      setUsedWords([]);
+    } else {
+      setUsedWords(nextUsedWords);
+    }
 
     return nextWord;
   }

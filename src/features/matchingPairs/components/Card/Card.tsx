@@ -1,7 +1,8 @@
 import styles from "./Card.module.css";
+import Image from "next/image";
 
 type Props = {
-  value: any;
+  value: string;
   id: string;
   isFlipped: boolean;
   isMatched: boolean;
@@ -33,11 +34,14 @@ function Card({ value, id, isFlipped, isMatched, onClick }: Props) {
         } ${flippingBack ? styles.flippingBack : ""}`}
       >
         {(isFlipped || isMatched) && (
-          <img
-            src={`/icons/${value}.png`}
-            alt={`${value} icon`}
-            className={styles.cardImage}
-          />
+          <div className={styles.imageWrapper}>
+            <Image
+              src={`/icons/${value}.png`}
+              alt={`${value} icon`}
+              fill={true}
+              className={styles.cardImage}
+            />
+          </div>
         )}
       </div>
     </div>

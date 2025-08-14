@@ -48,6 +48,7 @@ function MagicButton(props: Props) {
     } = props;
     return (
       <Link
+        data-componenttype={as}
         href={href}
         className={`${styles.container} ${styles[variant]}`}
         onMouseEnter={() => playOnHover()}
@@ -63,6 +64,7 @@ function MagicButton(props: Props) {
   const { as, className, variant, enableOnClickSound = true, ...rest } = props;
   return (
     <button
+      data-componenttype={as}
       className={`${styles.back} ${styles[variant]} ${className || ""}`}
       onMouseEnter={() => playOnHover()}
       onKeyDown={() => playOnToggle()}

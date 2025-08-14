@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { isMainThread } from "worker_threads";
 
 function useCheckIfIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
