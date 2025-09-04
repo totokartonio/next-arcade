@@ -6,7 +6,12 @@ type Props = {
 
 function HangmanDrawing({ wrongAttempts }: Props) {
   return (
-    <svg width="200" height="250" style={{ stroke: "#333", strokeWidth: 4 }}>
+    <svg
+      viewBox="0 0 200 250"
+      preserveAspectRatio="xMidYMid meet"
+      className={styles.canvas}
+      style={{ stroke: "#333", strokeWidth: 4 }}
+    >
       {wrongAttempts > 0 && (
         <>
           <line

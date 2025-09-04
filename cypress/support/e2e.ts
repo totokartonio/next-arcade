@@ -1,5 +1,6 @@
 import "./commands";
 import "@testing-library/cypress/add-commands";
+import "cypress-plugin-tab";
 
 Cypress.on("window:before:load", (win) => {
   class MockAudioParam {

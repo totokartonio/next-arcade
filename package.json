@@ -37,6 +37,8 @@
     "@types/testing-library__jest-dom": "^5.14.9",
     "@vitejs/plugin-react": "^5.0.0",
     "cypress": "^14.5.4",
+    "cypress-plugin-tab": "^1.0.5",
+    "cypress-real-events": "^1.14.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "jsdom": "^26.1.0",

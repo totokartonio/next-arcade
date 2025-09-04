@@ -1,8 +1,10 @@
 .navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-block: 5px;
   padding-inline: 20px;
+  margin-bottom: 5px;
 }
 
 .button {
@@ -15,4 +17,12 @@
 
 .controlGroup {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+@media (width < 525px) {
+  .button {
+    font-size: 1rem;
+  }
 }

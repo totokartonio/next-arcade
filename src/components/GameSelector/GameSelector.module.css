@@ -1,38 +1,153 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 70px;
   justify-content: center;
   align-items: center;
 }
 
-.gameOption {
-  max-width: 140px;
-  width: 100%;
-  min-width: 150px;
+.card {
+  width: 200px;
+  height: 300px;
   text-align: center;
   font-size: 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .imageContainer {
   position: relative;
-  width: 140px;
-  height: 190px;
+  width: 180px;
+  height: 270px;
 }
 
-@media (min-width: 2560px) {
+.cover {
+  border-radius: 5px;
+}
+
+.cardContainer {
+  border: 1px solid var(--foreground);
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.selected {
+  background-color: var(--neutral-700);
+}
+
+.cardContainer:hover {
+  box-shadow: 0 0 5px 2px var(--secondary);
+}
+
+.cardContainer:focus {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+.originalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  opacity: 1;
+}
+
+.originalContent.hidden {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/* Анимация для OptionsList */
+.options {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+
+  /* Начальное состояние - скрыт сверху */
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.options.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.text {
+  font-size: 1.6rem;
+  line-height: 120%;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding-inline: 0;
+  margin: 0;
+}
+
+/* Анимация для кнопок внутри списка */
+.list li {
+  transform: translateY(10px);
+  opacity: 0;
+  animation: slideInButton 0.3s ease forwards;
+}
+
+.list li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.list li:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.list li:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.list li:nth-child(4) {
+  animation-delay: 0.25s;
+}
+
+@keyframes slideInButton {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (width < 525px) {
   .container {
-    gap: 70px;
+    gap: 40px;
   }
 
-  .gameOption {
-    max-width: 240px;
-    width: 100%;
-    min-width: 250px;
+  .card {
+    width: 150px;
+    height: 240px;
   }
 
   .imageContainer {
-    width: 240px;
-    height: 330px;
+    width: 140px;
+    height: 190px;
+  }
+
+  .text {
+    font-size: 1.2rem;
   }
 }

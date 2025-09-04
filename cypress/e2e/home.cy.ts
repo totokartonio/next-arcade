@@ -37,9 +37,9 @@ describe("Home Page", () => {
   });
 
   it("shows difficulty options when clicking on a game", () => {
-    cy.get('[id="hangman"]').click();
+    cy.get('[data-id="hangman"]').click();
+    cy.contains("Select Difficulty", { timeout: 10000 }).should("be.visible");
 
-    cy.contains("Select difficulty:").should("be.visible");
     cy.contains("Easy").should("be.visible");
     cy.contains("Medium").should("be.visible");
     cy.contains("Hard").should("be.visible");
@@ -54,11 +54,11 @@ describe("Home Page", () => {
   });
 
   it("can close dropdown by clicking outside", () => {
-    cy.get('[id="hangman"]').click();
-    cy.contains("Select difficulty:").should("be.visible");
+    cy.get('[data-id="hangman"]').click();
+    cy.contains("Select Difficulty", { timeout: 10000 }).should("be.visible");
 
     cy.get("body").click(100, 100);
-    cy.contains("Select difficulty:").should("not.exist");
+    cy.contains("Select Difficulty").should("not.be.visible");
   });
 
   it("has working about link in footer", () => {

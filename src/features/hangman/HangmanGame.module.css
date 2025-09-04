@@ -15,6 +15,7 @@
 
 @media (max-width: 525px) {
   .belowSlot {
+    gap: 20px;
     min-block-size: 150px;
   }
 }
