@@ -1,23 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import useGameSounds from "@/hooks/useGameSounds";
 import styles from "./GameSelector.module.css";
-import DropdownList from "../DropdownList";
+import GameCard from "./atoms/GameCard";
 import { GAMES_CATALOGUE, DIFFICULTIES } from "@/constants";
 
 function GameSelector() {
   const [isSelected, setIsSelected] = useState<string | null>(null);
 
   function handleOnClick(id: string) {
-    if (id === isSelected) {
-      setIsSelected(null);
-      return;
+    if (id !== isSelected) {
+      playOnClick();
     }
     setIsSelected(id);
   }
 
+  function handleDisselect() {
+    setIsSelected(null);
+  }
+
   const games = Object.values(GAMES_CATALOGUE);
+
+  const { playOnClick } = useGameSounds();
 
   return (
     <div className={styles.container}>
@@ -32,26 +37,16 @@ function GameSelector() {
         }
 
         return (
-          <DropdownList
-            slug={slug}
-            id={slug}
-            title={"Select difficulty:"}
-            optionsArray={gameOptions}
-            key={slug}
+          <GameCard
             onClick={() => handleOnClick(slug)}
-            isOpen={isSelected === slug}
-            className={styles.gameOption}
-          >
-            <div className={styles.imageContainer}>
-              <Image
-                src={img.src}
-                fill={true}
-                alt={`${title} cover`}
-                className={styles.cover}
-              />
-            </div>
-            {title}
-          </DropdownList>
+            onDisselect={handleDisselect}
+            key={slug}
+            title={title}
+            id={slug}
+            img={img}
+            isSelected={slug === isSelected}
+            optionsArray={gameOptions}
+          />
         );
       })}
     </div>

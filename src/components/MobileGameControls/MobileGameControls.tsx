@@ -17,7 +17,7 @@ function MobileGameControls({
         <div className={styles.upperRow}>
           <MagicButton
             as="button"
-            variant="keyButton"
+            variant="dpad"
             className={`${styles.dpadButton} ${styles.up}`}
             onClick={() => onDirectionChange?.("up")}
             enableOnClickSound={false}
@@ -29,7 +29,7 @@ function MobileGameControls({
         <div className={styles.middleRow}>
           <MagicButton
             as="button"
-            variant="keyButton"
+            variant="dpad"
             className={`${styles.dpadButton} ${styles.left}`}
             onClick={() => onDirectionChange?.("left")}
             enableOnClickSound={false}
@@ -39,7 +39,7 @@ function MobileGameControls({
 
           <MagicButton
             as="button"
-            variant="keyButton"
+            variant="dpad"
             className={`${styles.dpadButton} ${styles.right}`}
             onClick={() => onDirectionChange?.("right")}
             enableOnClickSound={false}
@@ -50,7 +50,7 @@ function MobileGameControls({
         <div className={styles.lowerRow}>
           <MagicButton
             as="button"
-            variant="keyButton"
+            variant="dpad"
             className={`${styles.dpadButton} ${styles.down}`}
             onClick={() => onDirectionChange?.("down")}
             enableOnClickSound={false}

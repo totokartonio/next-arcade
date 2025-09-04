@@ -1,3 +1,9 @@
+.canvas {
+  width: clamp(120px, 40vw, 200px);
+  height: auto;
+  display: block;
+}
+
 /* Common style for animated parts */
 .drawingPart {
   fill: none;

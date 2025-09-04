@@ -48,6 +48,7 @@ function SnakeGame() {
         height={boardH}
         className={`${styles.gameBoard} ${strictBorder && styles.strictBorder}`}
       ></canvas>
+      <MobileGameControls onDirectionChange={handleDirectionChange} />
       <div className={styles.belowSlot}>
         {game.isIdle && (
           <p>
@@ -58,7 +59,6 @@ function SnakeGame() {
           <GameOver isWon={!game.isLost} onClick={game.restart} />
         )}
       </div>
-      <MobileGameControls onDirectionChange={handleDirectionChange} />
     </div>
   );
 }

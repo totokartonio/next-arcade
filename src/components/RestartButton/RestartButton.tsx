@@ -12,6 +12,7 @@ function RestartButton({ onClick }: { onClick: () => void }) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === " ") {
+        e.preventDefault();
         playOnToggle();
         onClick();
       }

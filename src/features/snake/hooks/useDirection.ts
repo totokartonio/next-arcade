@@ -39,7 +39,21 @@ function useDirection(
       }
     }
 
+    const KEYS = [
+      "a",
+      "s",
+      "d",
+      "w",
+      "ArrowRight",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowUp",
+    ];
+
     function handleKeyDown(event: KeyboardEvent) {
+      if (KEYS.includes(event.key)) {
+        event.preventDefault();
+      }
       if (gameStatus === "idle") {
         startIfIdle(gameStatus, setGameStatus);
       }

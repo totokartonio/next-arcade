@@ -55,6 +55,10 @@
 
 @media (max-width: 525px) {
   .title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .gameContainer {
+    gap: 0.5rem;
   }
 }

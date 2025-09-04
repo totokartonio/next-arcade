@@ -1,12 +1,9 @@
 .mobileControls {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
+  width: 300px;
   display: flex;
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  z-index: 10;
   padding: 1rem;
   background-color: var(--neutral-700);
   border-radius: 15px;
@@ -18,14 +15,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  width: 120px;
-  height: 120px;
+  gap: 10px;
 }
 
 .dpadButton {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
@@ -43,35 +38,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 45px;
+  gap: 50px;
 }
 
 .lowerRow {
   display: flex;
   justify-content: center;
-}
-
-@media (max-width: 480px) {
-  .mobileControls {
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-    justify-content: space-around;
-    padding: 0.5rem;
-  }
-
-  .dpad {
-    width: 100px;
-    height: 100px;
-  }
-
-  .dpadButton {
-    width: 30px;
-    height: 30px;
-    font-size: 1rem;
-  }
-
-  .middleRow {
-    gap: 35px;
-  }
 }

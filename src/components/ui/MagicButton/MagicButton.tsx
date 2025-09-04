@@ -8,7 +8,7 @@ import useGameSounds from "@/hooks/useGameSounds";
 
 type CommonProps = {
   children: ReactNode;
-  variant: "primary" | "secondary" | "keyButton";
+  variant: "primary" | "secondary" | "keyButton" | "dpad";
   className?: string;
   enableOnClickSound?: boolean;
 };

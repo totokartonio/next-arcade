@@ -105,6 +105,20 @@
   background: var(--neutral-dusty-gray-gradient);
 }
 
+/* dpad */
+
+.dpad .front {
+  background: var(--neutral-dusty-gray);
+  color: var(--foreground);
+  font-size: 1.5rem;
+  width: 45px;
+  height: 40px;
+}
+
+.dpad .edge {
+  background: var(--neutral-dusty-gray-gradient);
+}
+
 /* Disabled */
 button.back:disabled {
   cursor: not-allowed;
@@ -120,4 +134,14 @@ button.back:disabled .shadow {
   transform: translateY(1px);
   opacity: 0;
   transition: transform 34ms, opacity 34ms;
+}
+
+@media (width < 525px) {
+  .keyButton .front {
+    width: 30px;
+  }
+
+  .front {
+    line-height: 100%;
+  }
 }
